@@ -1,0 +1,292 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2D0B9E641540556E00E5BE71 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D0B9E631540556E00E5BE71 /* UIKit.framework */; };
+		2D0B9E661540556E00E5BE71 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D0B9E651540556E00E5BE71 /* Foundation.framework */; };
+		2D0B9E681540556E00E5BE71 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D0B9E671540556E00E5BE71 /* CoreGraphics.framework */; };
+		2D0B9E6E1540556E00E5BE71 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2D0B9E6C1540556E00E5BE71 /* InfoPlist.strings */; };
+		2D0B9E701540556E00E5BE71 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D0B9E6F1540556E00E5BE71 /* main.m */; };
+		2D0B9E741540556E00E5BE71 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D0B9E731540556E00E5BE71 /* AppDelegate.m */; };
+		2D0B9E771540556E00E5BE71 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D0B9E761540556E00E5BE71 /* ViewController.m */; };
+		2D0B9E7A1540556E00E5BE71 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D0B9E781540556E00E5BE71 /* ViewController.xib */; };
+		2D0B9E821540558B00E5BE71 /* Lockbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D0B9E811540558B00E5BE71 /* Lockbox.m */; };
+		2D0B9E841540565000E5BE71 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D0B9E831540565000E5BE71 /* Security.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		2D0B9E5F1540556E00E5BE71 /* LockBox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LockBox.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2D0B9E631540556E00E5BE71 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		2D0B9E651540556E00E5BE71 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		2D0B9E671540556E00E5BE71 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		2D0B9E6B1540556E00E5BE71 /* LockBox-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LockBox-Info.plist"; sourceTree = "<group>"; };
+		2D0B9E6D1540556E00E5BE71 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		2D0B9E6F1540556E00E5BE71 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = main.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		2D0B9E711540556E00E5BE71 /* LockBox-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LockBox-Prefix.pch"; sourceTree = "<group>"; };
+		2D0B9E721540556E00E5BE71 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = AppDelegate.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		2D0B9E731540556E00E5BE71 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AppDelegate.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		2D0B9E751540556E00E5BE71 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = ViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		2D0B9E761540556E00E5BE71 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		2D0B9E791540556E00E5BE71 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
+		2D0B9E801540558B00E5BE71 /* Lockbox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = Lockbox.h; path = ../../Lockbox.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		2D0B9E811540558B00E5BE71 /* Lockbox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = Lockbox.m; path = ../../Lockbox.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		2D0B9E831540565000E5BE71 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2D0B9E5C1540556E00E5BE71 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2D0B9E841540565000E5BE71 /* Security.framework in Frameworks */,
+				2D0B9E641540556E00E5BE71 /* UIKit.framework in Frameworks */,
+				2D0B9E661540556E00E5BE71 /* Foundation.framework in Frameworks */,
+				2D0B9E681540556E00E5BE71 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2D0B9E541540556D00E5BE71 = {
+			isa = PBXGroup;
+			children = (
+				2D0B9E691540556E00E5BE71 /* LockBox */,
+				2D0B9E621540556E00E5BE71 /* Frameworks */,
+				2D0B9E601540556E00E5BE71 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		2D0B9E601540556E00E5BE71 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2D0B9E5F1540556E00E5BE71 /* LockBox.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2D0B9E621540556E00E5BE71 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2D0B9E831540565000E5BE71 /* Security.framework */,
+				2D0B9E631540556E00E5BE71 /* UIKit.framework */,
+				2D0B9E651540556E00E5BE71 /* Foundation.framework */,
+				2D0B9E671540556E00E5BE71 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2D0B9E691540556E00E5BE71 /* LockBox */ = {
+			isa = PBXGroup;
+			children = (
+				2D0B9E801540558B00E5BE71 /* Lockbox.h */,
+				2D0B9E811540558B00E5BE71 /* Lockbox.m */,
+				2D0B9E721540556E00E5BE71 /* AppDelegate.h */,
+				2D0B9E731540556E00E5BE71 /* AppDelegate.m */,
+				2D0B9E751540556E00E5BE71 /* ViewController.h */,
+				2D0B9E761540556E00E5BE71 /* ViewController.m */,
+				2D0B9E781540556E00E5BE71 /* ViewController.xib */,
+				2D0B9E6A1540556E00E5BE71 /* Supporting Files */,
+			);
+			path = LockBox;
+			sourceTree = "<group>";
+		};
+		2D0B9E6A1540556E00E5BE71 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				2D0B9E6B1540556E00E5BE71 /* LockBox-Info.plist */,
+				2D0B9E6C1540556E00E5BE71 /* InfoPlist.strings */,
+				2D0B9E6F1540556E00E5BE71 /* main.m */,
+				2D0B9E711540556E00E5BE71 /* LockBox-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		2D0B9E5E1540556E00E5BE71 /* LockBox */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2D0B9E7D1540556E00E5BE71 /* Build configuration list for PBXNativeTarget "LockBox" */;
+			buildPhases = (
+				2D0B9E5B1540556E00E5BE71 /* Sources */,
+				2D0B9E5C1540556E00E5BE71 /* Frameworks */,
+				2D0B9E5D1540556E00E5BE71 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LockBox;
+			productName = LockBox;
+			productReference = 2D0B9E5F1540556E00E5BE71 /* LockBox.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2D0B9E561540556D00E5BE71 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0430;
+				ORGANIZATIONNAME = "Hawk iMedia";
+			};
+			buildConfigurationList = 2D0B9E591540556D00E5BE71 /* Build configuration list for PBXProject "LockBox" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 2D0B9E541540556D00E5BE71;
+			productRefGroup = 2D0B9E601540556E00E5BE71 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				2D0B9E5E1540556E00E5BE71 /* LockBox */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2D0B9E5D1540556E00E5BE71 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2D0B9E6E1540556E00E5BE71 /* InfoPlist.strings in Resources */,
+				2D0B9E7A1540556E00E5BE71 /* ViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2D0B9E5B1540556E00E5BE71 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2D0B9E701540556E00E5BE71 /* main.m in Sources */,
+				2D0B9E741540556E00E5BE71 /* AppDelegate.m in Sources */,
+				2D0B9E771540556E00E5BE71 /* ViewController.m in Sources */,
+				2D0B9E821540558B00E5BE71 /* Lockbox.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		2D0B9E6C1540556E00E5BE71 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2D0B9E6D1540556E00E5BE71 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		2D0B9E781540556E00E5BE71 /* ViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2D0B9E791540556E00E5BE71 /* en */,
+			);
+			name = ViewController.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		2D0B9E7B1540556E00E5BE71 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		2D0B9E7C1540556E00E5BE71 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		2D0B9E7E1540556E00E5BE71 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "LockBox/LockBox-Prefix.pch";
+				INFOPLIST_FILE = "LockBox/LockBox-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		2D0B9E7F1540556E00E5BE71 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "LockBox/LockBox-Prefix.pch";
+				INFOPLIST_FILE = "LockBox/LockBox-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2D0B9E591540556D00E5BE71 /* Build configuration list for PBXProject "LockBox" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2D0B9E7B1540556E00E5BE71 /* Debug */,
+				2D0B9E7C1540556E00E5BE71 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2D0B9E7D1540556E00E5BE71 /* Build configuration list for PBXNativeTarget "LockBox" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2D0B9E7E1540556E00E5BE71 /* Debug */,
+				2D0B9E7F1540556E00E5BE71 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 2D0B9E561540556D00E5BE71 /* Project object */;
+}
