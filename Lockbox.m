@@ -33,12 +33,21 @@
 
 +(BOOL)setObject:(NSString *)obj forKey:(NSString *)key
 {
+    OSStatus status;
+
+    // If the object is nil, delete the item
+    if (!obj) {
+        NSMutableDictionary *query = [Lockbox _query];
+        [query setObject:key forKey:(id)kSecAttrService];
+        status = SecItemDelete((CFDictionaryRef)query);
+        return (status == errSecSuccess);
+    }
+    
     NSMutableDictionary *dict = [Lockbox _service];
     [dict setObject: key                            forKey: (id) kSecAttrService];
     [dict setObject: [obj dataUsingEncoding:NSUTF8StringEncoding] forKey: (id) kSecValueData];
     
-    // Should really check the status here, and the method should return BOOL
-    OSStatus status = SecItemAdd ((CFDictionaryRef) dict, NULL);
+    status = SecItemAdd ((CFDictionaryRef) dict, NULL);
     if (status == errSecDuplicateItem) {
         NSMutableDictionary *query = [Lockbox _query];
         [query setObject:key forKey:(id)kSecAttrService];
@@ -47,7 +56,7 @@
             status = SecItemAdd((CFDictionaryRef) dict, NULL);        
     }
     if (status != errSecSuccess)
-        NSLog(@"SecItemAdd failed: %ld", status);
+        NSLog(@"SecItemAdd failed for key %@: %ld", key, status);
     
     return (status == errSecSuccess);
 }
@@ -60,7 +69,7 @@
     NSData *data = nil;
     OSStatus status = SecItemCopyMatching ( (CFDictionaryRef) query, (CFTypeRef*) &data );
     if (status != errSecSuccess)
-        NSLog(@"SecItemCopyMatching failed: %ld", status);
+        NSLog(@"SecItemCopyMatching failed for key %@: %ld", key, status);
     
     if (!data)
         return nil;
