@@ -10,7 +10,14 @@
 
 #define kDelimeter @"-|-"
 
+static NSString *_bundleId = nil;
+
 @implementation Lockbox
+
++(void)initialize
+{
+    _bundleId = [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString*)kCFBundleIdentifierKey];
+}
 
 +(NSMutableDictionary *)_service
 {
@@ -31,45 +38,57 @@
     return query;
 }
 
+// Prefix a bare key like "MySecureKey" with the bundle id, so the actual key stored
+// is unique to this app, e.g. "com.mycompany.myapp.MySecretKey"
++(NSString *)_hierarchicalKey:(NSString *)key
+{
+    return [_bundleId stringByAppendingFormat:@".%@", key];
+}
+
 +(BOOL)setObject:(NSString *)obj forKey:(NSString *)key
 {
     OSStatus status;
+    
+    NSString *hierKey = [Lockbox _hierarchicalKey:key];
 
     // If the object is nil, delete the item
     if (!obj) {
         NSMutableDictionary *query = [Lockbox _query];
-        [query setObject:key forKey:(id)kSecAttrService];
+        [query setObject:hierKey forKey:(id)kSecAttrService];
         status = SecItemDelete((CFDictionaryRef)query);
         return (status == errSecSuccess);
     }
     
     NSMutableDictionary *dict = [Lockbox _service];
-    [dict setObject: key                            forKey: (id) kSecAttrService];
+    [dict setObject: hierKey forKey: (id) kSecAttrService];
     [dict setObject: [obj dataUsingEncoding:NSUTF8StringEncoding] forKey: (id) kSecValueData];
     
     status = SecItemAdd ((CFDictionaryRef) dict, NULL);
     if (status == errSecDuplicateItem) {
         NSMutableDictionary *query = [Lockbox _query];
-        [query setObject:key forKey:(id)kSecAttrService];
+        [query setObject:hierKey forKey:(id)kSecAttrService];
         status = SecItemDelete((CFDictionaryRef)query);
         if (status == errSecSuccess)
             status = SecItemAdd((CFDictionaryRef) dict, NULL);        
     }
     if (status != errSecSuccess)
-        NSLog(@"SecItemAdd failed for key %@: %ld", key, status);
+        NSLog(@"SecItemAdd failed for key %@: %ld", hierKey, status);
     
     return (status == errSecSuccess);
 }
 
 +(NSString *)objectForKey:(NSString *)key
 {
+    NSString *hierKey = [Lockbox _hierarchicalKey:key];
+
     NSMutableDictionary *query = [Lockbox _query];
-    [query setObject:key forKey: (id)kSecAttrService];
+    [query setObject:hierKey forKey: (id)kSecAttrService];
 
     NSData *data = nil;
-    OSStatus status = SecItemCopyMatching ( (CFDictionaryRef) query, (CFTypeRef*) &data );
+    OSStatus status =
+        SecItemCopyMatching ( (CFDictionaryRef) query, (CFTypeRef*) &data );
     if (status != errSecSuccess)
-        NSLog(@"SecItemCopyMatching failed for key %@: %ld", key, status);
+        NSLog(@"SecItemCopyMatching failed for key %@: %ld", hierKey, status);
     
     if (!data)
         return nil;
