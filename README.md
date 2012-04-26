@@ -34,6 +34,8 @@ All the `setXxx` methods return `BOOL`, indicating if the keychain operation suc
 
 The `setXxx` methods will overwrite values for keys that already exist in the keychain, or simply add a keychain entry for the key/value pair if it's not already there.
 
+In all the methods you can use a simple key name, like "MyKey", but know that under the hood Lockbox is prefixing that key with your apps bundle id. So the actual key used to store and retrieve the data looks more like "com.mycompany.myapp.MyKey". This ensures that your app, and only your app, has access to your data.
+
 ## Requirements
 
 To use this class you will need to add the `Security` framework to your project.
