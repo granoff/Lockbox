@@ -49,23 +49,23 @@ static NSString *_bundleId = nil;
 {
     OSStatus status;
     
-    NSString *hierKey = [Lockbox _hierarchicalKey:key];
+    NSString *hierKey = [self _hierarchicalKey:key];
 
     // If the object is nil, delete the item
     if (!obj) {
-        NSMutableDictionary *query = [Lockbox _query];
+        NSMutableDictionary *query = [self _query];
         [query setObject:hierKey forKey:(id)kSecAttrService];
         status = SecItemDelete((CFDictionaryRef)query);
         return (status == errSecSuccess);
     }
     
-    NSMutableDictionary *dict = [Lockbox _service];
+    NSMutableDictionary *dict = [self _service];
     [dict setObject: hierKey forKey: (id) kSecAttrService];
     [dict setObject: [obj dataUsingEncoding:NSUTF8StringEncoding] forKey: (id) kSecValueData];
     
     status = SecItemAdd ((CFDictionaryRef) dict, NULL);
     if (status == errSecDuplicateItem) {
-        NSMutableDictionary *query = [Lockbox _query];
+        NSMutableDictionary *query = [self _query];
         [query setObject:hierKey forKey:(id)kSecAttrService];
         status = SecItemDelete((CFDictionaryRef)query);
         if (status == errSecSuccess)
@@ -79,9 +79,9 @@ static NSString *_bundleId = nil;
 
 +(NSString *)objectForKey:(NSString *)key
 {
-    NSString *hierKey = [Lockbox _hierarchicalKey:key];
+    NSString *hierKey = [self _hierarchicalKey:key];
 
-    NSMutableDictionary *query = [Lockbox _query];
+    NSMutableDictionary *query = [self _query];
     [query setObject:hierKey forKey: (id)kSecAttrService];
 
     NSData *data = nil;
@@ -102,24 +102,24 @@ static NSString *_bundleId = nil;
 
 +(BOOL)setString:(NSString *)value forKey:(NSString *)key
 {
-    return [Lockbox setObject:value forKey:key];
+    return [self setObject:value forKey:key];
 }
 
 +(NSString *)stringForKey:(NSString *)key
 {
-    return [Lockbox objectForKey:key];
+    return [self objectForKey:key];
 }
 
 +(BOOL)setArray:(NSArray *)value forKey:(NSString *)key
 {
     NSString *components = [value componentsJoinedByString:kDelimeter];
-    return [Lockbox setObject:components forKey:key];
+    return [self setObject:components forKey:key];
 }
 
 +(NSArray *)arrayForKey:(NSString *)key
 {
     NSArray *array = nil;
-    NSString *components = [Lockbox objectForKey:key];
+    NSString *components = [self objectForKey:key];
     if (components)
         array = [NSArray arrayWithArray:[components componentsSeparatedByString:kDelimeter]];
     
@@ -128,13 +128,13 @@ static NSString *_bundleId = nil;
 
 +(BOOL)setSet:(NSSet *)value forKey:(NSString *)key
 {
-    return [Lockbox setArray:[value allObjects] forKey:key];    
+    return [self setArray:[value allObjects] forKey:key];
 }
 
 +(NSSet *)setForKey:(NSString *)key
 {
     NSSet *set = nil;
-    NSArray *array = [Lockbox arrayForKey:key];
+    NSArray *array = [self arrayForKey:key];
     if (array)
         set = [NSSet setWithArray:array];
     
