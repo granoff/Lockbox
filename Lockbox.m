@@ -97,6 +97,8 @@ static NSString *_bundleId = nil;
                     initWithData: data 
                     encoding: NSUTF8StringEncoding] autorelease];
 
+    [data autorelease];
+    
     return s;    
 }
 
