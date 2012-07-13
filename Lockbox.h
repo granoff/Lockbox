@@ -5,7 +5,7 @@
 //  Copyright (c) 2012 Hawk iMedia. All rights reserved.
 //
 
-@interface Lockbox
+@interface Lockbox : NSObject
 
 +(BOOL)setString:(NSString *)value forKey:(NSString *)key;
 +(NSString *)stringForKey:(NSString *)key;
