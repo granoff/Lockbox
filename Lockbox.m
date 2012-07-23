@@ -93,11 +93,14 @@ static NSString *_bundleId = nil;
     if (!data)
         return nil;
 
-    NSString *s = [[[NSString alloc] 
+    NSString *s = [[NSString alloc] 
                     initWithData: data 
-                    encoding: NSUTF8StringEncoding] autorelease];
+                    encoding: NSUTF8StringEncoding];
 
+#if !__has_feature(objc_arc)
+    [s autorelease];
     [data autorelease];
+#endif
     
     return s;    
 }
