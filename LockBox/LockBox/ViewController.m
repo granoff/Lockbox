@@ -130,14 +130,6 @@
     return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
 }
 
-- (void)dealloc {
-    [inputTextField release];
-    [saveButton release];
-    [fetchButton release];
-    [fetchedValueLabel release];
-    [statusLabel release];
-    [super dealloc];
-}
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
 {

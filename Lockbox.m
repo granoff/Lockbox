@@ -55,7 +55,11 @@ static NSString *_bundleId = nil;
     if (!obj) {
         NSMutableDictionary *query = [self _query];
         [query setObject:hierKey forKey:(id)kSecAttrService];
+#if __has_feature(objc_arc)
+        status = SecItemDelete((__bridge CFDictionaryRef)query);
+#else
         status = SecItemDelete((CFDictionaryRef)query);
+#endif
         return (status == errSecSuccess);
     }
     
@@ -63,13 +67,25 @@ static NSString *_bundleId = nil;
     [dict setObject: hierKey forKey: (id) kSecAttrService];
     [dict setObject: [obj dataUsingEncoding:NSUTF8StringEncoding] forKey: (id) kSecValueData];
     
+#if __has_feature(objc_arc)
+    status = SecItemAdd ((__bridge CFDictionaryRef) dict, NULL);
+#else
     status = SecItemAdd ((CFDictionaryRef) dict, NULL);
+#endif
     if (status == errSecDuplicateItem) {
         NSMutableDictionary *query = [self _query];
         [query setObject:hierKey forKey:(id)kSecAttrService];
-        status = SecItemDelete((CFDictionaryRef)query);
+#if __has_feature(objc_arc)
+        status = SecItemDelete((__bridge CFDictionaryRef)query);
+#else
+        status = SecItemDelete((CFDictionaryRef) query);
+#endif
         if (status == errSecSuccess)
-            status = SecItemAdd((CFDictionaryRef) dict, NULL);        
+#if __has_feature(objc_arc)
+            status = SecItemAdd((__bridge CFDictionaryRef) dict, NULL);        
+#else
+            status = SecItemAdd((CFDictionaryRef) dict, NULL);
+#endif
     }
     if (status != errSecSuccess)
         NSLog(@"SecItemAdd failed for key %@: %ld", hierKey, status);
@@ -84,9 +100,13 @@ static NSString *_bundleId = nil;
     NSMutableDictionary *query = [self _query];
     [query setObject:hierKey forKey: (id)kSecAttrService];
 
-    NSData *data = nil;
+    CFDataRef data = nil;
     OSStatus status =
-        SecItemCopyMatching ( (CFDictionaryRef) query, (CFTypeRef*) &data );
+#if __has_feature(objc_arc)
+        SecItemCopyMatching ( (__bridge CFDictionaryRef) query, (CFTypeRef *) &data );
+#else
+        SecItemCopyMatching((CFDictionaryRef) query, (CFTypeRef *)&data);
+#endif
     if (status != errSecSuccess)
         NSLog(@"SecItemCopyMatching failed for key %@: %ld", hierKey, status);
     
@@ -94,12 +114,17 @@ static NSString *_bundleId = nil;
         return nil;
 
     NSString *s = [[NSString alloc] 
-                    initWithData: data 
+                    initWithData: 
+#if __has_feature(objc_arc)
+                   (__bridge_transfer NSData *)data 
+#else
+                   (NSData *)data
+#endif
                     encoding: NSUTF8StringEncoding];
 
 #if !__has_feature(objc_arc)
     [s autorelease];
-    [data autorelease];
+    CFRelease(data);
 #endif
     
     return s;    

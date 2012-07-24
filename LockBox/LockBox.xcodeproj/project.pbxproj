@@ -15,7 +15,7 @@
 		2D0B9E741540556E00E5BE71 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D0B9E731540556E00E5BE71 /* AppDelegate.m */; };
 		2D0B9E771540556E00E5BE71 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D0B9E761540556E00E5BE71 /* ViewController.m */; };
 		2D0B9E7A1540556E00E5BE71 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D0B9E781540556E00E5BE71 /* ViewController.xib */; };
-		2D0B9E821540558B00E5BE71 /* Lockbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D0B9E811540558B00E5BE71 /* Lockbox.m */; };
+		2D0B9E821540558B00E5BE71 /* Lockbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D0B9E811540558B00E5BE71 /* Lockbox.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		2D0B9E841540565000E5BE71 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D0B9E831540565000E5BE71 /* Security.framework */; };
 /* End PBXBuildFile section */
 
@@ -247,6 +247,7 @@
 		2D0B9E7E1540556E00E5BE71 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "LockBox/LockBox-Prefix.pch";
 				INFOPLIST_FILE = "LockBox/LockBox-Info.plist";
@@ -258,6 +259,7 @@
 		2D0B9E7F1540556E00E5BE71 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "LockBox/LockBox-Prefix.pch";
 				INFOPLIST_FILE = "LockBox/LockBox-Info.plist";
@@ -285,6 +287,7 @@
 				2D0B9E7F1540556E00E5BE71 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

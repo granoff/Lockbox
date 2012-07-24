@@ -10,10 +10,10 @@
 
 @interface ViewController : UIViewController <UITextFieldDelegate>
 
-@property (retain, nonatomic) IBOutlet UITextField *inputTextField;
-@property (retain, nonatomic) IBOutlet UIButton *saveButton;
-@property (retain, nonatomic) IBOutlet UIButton *fetchButton;
-@property (retain, nonatomic) IBOutlet UILabel *fetchedValueLabel;
-@property (retain, nonatomic) IBOutlet UILabel *statusLabel;
+@property ( nonatomic) IBOutlet UITextField *inputTextField;
+@property ( nonatomic) IBOutlet UIButton *saveButton;
+@property ( nonatomic) IBOutlet UIButton *fetchButton;
+@property ( nonatomic) IBOutlet UILabel *fetchedValueLabel;
+@property ( nonatomic) IBOutlet UILabel *statusLabel;
 
 @end
