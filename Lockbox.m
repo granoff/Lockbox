@@ -8,7 +8,7 @@
 #import "Lockbox.h"
 #import <Security/Security.h>
 
-#define kDelimeter @"-|-"
+#define kDelimiter @"-|-"
 
 static NSString *_bundleId = nil;
 
@@ -157,7 +157,7 @@ static NSString *_bundleId = nil;
 
 +(BOOL)setArray:(NSArray *)value forKey:(NSString *)key
 {
-    NSString *components = [value componentsJoinedByString:kDelimeter];
+    NSString *components = [value componentsJoinedByString:kDelimiter];
     return [self setObject:components forKey:key];
 }
 
@@ -166,7 +166,7 @@ static NSString *_bundleId = nil;
     NSArray *array = nil;
     NSString *components = [self objectForKey:key];
     if (components)
-        array = [NSArray arrayWithArray:[components componentsSeparatedByString:kDelimeter]];
+        array = [NSArray arrayWithArray:[components componentsSeparatedByString:kDelimiter]];
     
     return array;
 }
