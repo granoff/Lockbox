@@ -16,4 +16,7 @@
 +(BOOL)setSet:(NSSet *)value forKey:(NSString *)key;
 +(NSSet *)setForKey:(NSString *)key;
 
++(BOOL)setDate:(NSDate *)value forKey:(NSString *)key;
++(NSDate *)dateForKey:(NSString *)key;
+
 @end

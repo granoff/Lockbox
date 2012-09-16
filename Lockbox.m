@@ -186,4 +186,20 @@ static NSString *_bundleId = nil;
     return set;
 }
 
++(BOOL)setDate:(NSDate *)value forKey:(NSString *)key
+{
+    if (!value)
+        return [self setObject:nil forKey:key];
+    NSNumber *rti = [NSNumber numberWithDouble:[value timeIntervalSinceReferenceDate]];
+    return [self setObject:[rti stringValue] forKey:key];
+}
+
++(NSDate *)dateForKey:(NSString *)key
+{
+    NSString *dateString = [self objectForKey:key];
+    if (dateString)
+        return [NSDate dateWithTimeIntervalSinceReferenceDate:[dateString doubleValue]];
+    return nil;
+}
+
 @end
