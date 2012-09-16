@@ -23,8 +23,11 @@ static NSString *_bundleId = nil;
 {
     NSMutableDictionary* dict = [NSMutableDictionary dictionary];
     
+#if __has_feature(objc_arc)
+    [dict setObject: (__bridge id) kSecClassGenericPassword  forKey: (__bridge id) kSecClass];
+#else
     [dict setObject: (id) kSecClassGenericPassword  forKey: (id) kSecClass];
-
+#endif
     return dict;
 }
 
@@ -32,9 +35,13 @@ static NSString *_bundleId = nil;
 {
     NSMutableDictionary* query = [NSMutableDictionary dictionary];
     
+#if __has_feature(objc_arc)
+    [query setObject: (__bridge id) kSecClassGenericPassword forKey: (__bridge id) kSecClass];
+    [query setObject: (id) kCFBooleanTrue           forKey: (__bridge id) kSecReturnData];
+#else
     [query setObject: (id) kSecClassGenericPassword forKey: (id) kSecClass];
     [query setObject: (id) kCFBooleanTrue           forKey: (id) kSecReturnData];
-
+#endif
     return query;
 }
 
@@ -54,30 +61,34 @@ static NSString *_bundleId = nil;
     // If the object is nil, delete the item
     if (!obj) {
         NSMutableDictionary *query = [self _query];
-        [query setObject:hierKey forKey:(id)kSecAttrService];
 #if __has_feature(objc_arc)
+        [query setObject:hierKey forKey:(__bridge id)kSecAttrService];
         status = SecItemDelete((__bridge CFDictionaryRef)query);
 #else
+        [query setObject:hierKey forKey:(id)kSecAttrService];
         status = SecItemDelete((CFDictionaryRef)query);
 #endif
         return (status == errSecSuccess);
     }
     
     NSMutableDictionary *dict = [self _service];
-    [dict setObject: hierKey forKey: (id) kSecAttrService];
-    [dict setObject: [obj dataUsingEncoding:NSUTF8StringEncoding] forKey: (id) kSecValueData];
     
 #if __has_feature(objc_arc)
+    [dict setObject: hierKey forKey: (__bridge id) kSecAttrService];
+    [dict setObject: [obj dataUsingEncoding:NSUTF8StringEncoding] forKey: (__bridge id) kSecValueData];
     status = SecItemAdd ((__bridge CFDictionaryRef) dict, NULL);
 #else
+    [dict setObject: hierKey forKey: (id) kSecAttrService];
+    [dict setObject: [obj dataUsingEncoding:NSUTF8StringEncoding] forKey: (id) kSecValueData];
     status = SecItemAdd ((CFDictionaryRef) dict, NULL);
 #endif
     if (status == errSecDuplicateItem) {
         NSMutableDictionary *query = [self _query];
-        [query setObject:hierKey forKey:(id)kSecAttrService];
 #if __has_feature(objc_arc)
+        [query setObject:hierKey forKey:(__bridge id)kSecAttrService];
         status = SecItemDelete((__bridge CFDictionaryRef)query);
 #else
+        [query setObject:hierKey forKey:(id)kSecAttrService];
         status = SecItemDelete((CFDictionaryRef) query);
 #endif
         if (status == errSecSuccess)
@@ -98,7 +109,11 @@ static NSString *_bundleId = nil;
     NSString *hierKey = [self _hierarchicalKey:key];
 
     NSMutableDictionary *query = [self _query];
+#if __has_feature(objc_arc)
+    [query setObject:hierKey forKey: (__bridge id)kSecAttrService];
+#else
     [query setObject:hierKey forKey: (id)kSecAttrService];
+#endif
 
     CFDataRef data = nil;
     OSStatus status =
