@@ -139,8 +139,8 @@ static NSString *_bundleId = nil;
 
 #if !__has_feature(objc_arc)
     [s autorelease];
-#endif
     CFRelease(data);
+#endif
     
     return s;    
 }
