@@ -24,10 +24,13 @@ One caveat here is that the keychain is really not meant to store large chunks o
 There are three pairs of methods, but method pairs for other container classes would not be hard to implement:
 
 + `+setString:forKey:`
++ `+setString:forKey:accessibility:`
 + `+stringForKey:`
 + `+setArray:forKey:`
++ `+setArray:forKey:accessibility:`
 + `+arrayForKey:`
 + `+setSet:forKey:`
++ `+setSet:forKey:accessibility:`
 + `+setForKey:`
 
 All the `setXxx` methods return `BOOL`, indicating if the keychain operation succeeded or failed. The `xxxForKey` methods return a non-`nil` value on success, or `nil` on failure.
@@ -35,6 +38,8 @@ All the `setXxx` methods return `BOOL`, indicating if the keychain operation suc
 The `setXxx` methods will overwrite values for keys that already exist in the keychain, or simply add a keychain entry for the key/value pair if it's not already there.
 
 In all the methods you can use a simple key name, like "MyKey", but know that under the hood Lockbox is prefixing that key with your apps bundle id. So the actual key used to store and retrieve the data looks more like "com.mycompany.myapp.MyKey". This ensures that your app, and only your app, has access to your data.
+
+The methods with a `accessibility` argument take a [Keychain Item Accessibility Constant](http://developer.apple.com/library/ios/#DOCUMENTATION/Security/Reference/keychainservices/Reference/reference.html#//apple_ref/doc/uid/TP30000898-CH4g-SW318). You can use this to control the when your keychain item should be readable. For example, passing `kSecAttrAccessibleWhenUnlockedThisDeviceOnly` will make it accessible only while the device is unlocked, and will not migrate this item to a new device or installation. The methods without a specific `accessibility` will use `kSecAttrAccessibleWhenUnlocked`, the default in recent iOS versions.
 
 ## Requirements
 

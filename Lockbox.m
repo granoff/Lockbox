@@ -9,6 +9,7 @@
 #import <Security/Security.h>
 
 #define kDelimeter @"-|-"
+#define DEFAULT_ACCESSIBILITY kSecAttrAccessibleWhenUnlocked
 
 #if __has_feature(objc_arc)
 #define ID __bridge id
@@ -51,7 +52,7 @@ static NSString *_bundleId = nil;
     return [_bundleId stringByAppendingFormat:@".%@", key];
 }
 
-+(BOOL)setObject:(NSString *)obj forKey:(NSString *)key
++(BOOL)setObject:(NSString *)obj forKey:(NSString *)key accessibility:(CFTypeRef)accessibility
 {
     OSStatus status;
     
@@ -71,6 +72,7 @@ static NSString *_bundleId = nil;
     
     NSMutableDictionary *dict = [self _service];
     [dict setObject: hierKey forKey: (ID) kSecAttrService];
+    [dict setObject: accessibility forKey: (ID) kSecAttrAccessible];
     [dict setObject: [obj dataUsingEncoding:NSUTF8StringEncoding] forKey: (ID) kSecValueData];
     
 #if __has_feature(objc_arc)
@@ -138,7 +140,12 @@ static NSString *_bundleId = nil;
 
 +(BOOL)setString:(NSString *)value forKey:(NSString *)key
 {
-    return [self setObject:value forKey:key];
+    return [self setString:value forKey:key accessibility:DEFAULT_ACCESSIBILITY];
+}
+
++(BOOL)setString:(NSString *)value forKey:(NSString *)key accessibility:(CFTypeRef)accessibility
+{
+    return [self setObject:value forKey:key accessibility:accessibility];
 }
 
 +(NSString *)stringForKey:(NSString *)key
@@ -148,8 +155,13 @@ static NSString *_bundleId = nil;
 
 +(BOOL)setArray:(NSArray *)value forKey:(NSString *)key
 {
+    return [self setArray:value forKey:key accessibility:DEFAULT_ACCESSIBILITY];
+}
+
++(BOOL)setArray:(NSArray *)value forKey:(NSString *)key accessibility:(CFTypeRef)accessibility
+{
     NSString *components = [value componentsJoinedByString:kDelimeter];
-    return [self setObject:components forKey:key];
+    return [self setObject:components forKey:key accessibility:accessibility];
 }
 
 +(NSArray *)arrayForKey:(NSString *)key
@@ -164,7 +176,12 @@ static NSString *_bundleId = nil;
 
 +(BOOL)setSet:(NSSet *)value forKey:(NSString *)key
 {
-    return [self setArray:[value allObjects] forKey:key];
+    return [self setSet:value forKey:key accessibility:DEFAULT_ACCESSIBILITY];
+}
+
++(BOOL)setSet:(NSSet *)value forKey:(NSString *)key accessibility:(CFTypeRef)accessibility
+{
+    return [self setArray:[value allObjects] forKey:key accessibility:accessibility];
 }
 
 +(NSSet *)setForKey:(NSString *)key
