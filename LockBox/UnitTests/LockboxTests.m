@@ -14,6 +14,7 @@
     NSString *testString;
     NSArray *testArray;
     NSSet *testSet;
+    NSDate *testDate;
 }
 
 -(void)setUp
@@ -21,6 +22,7 @@
     testString = @"TestString";
     testArray = @[ @"A", @"B", @"C" ];
     testSet = [NSSet setWithArray:testArray];
+    testDate = [NSDate date];
 }
 
 -(void)tearDown
@@ -73,4 +75,25 @@
     STAssertTrue([Lockbox setString:@"2" forKey:@"test"], @"Set '2' for key 'test'");
     STAssertTrue([[Lockbox stringForKey:@"test"] isEqualToString:@"2"], @"Retrieve '2' for key 'test'");
 }
+
+-(void)testSetDateForKey
+{
+    NSString *key = @"TestDateKey";
+    STAssertTrue([Lockbox setDate:testDate forKey:key], @"Should be able to store a date");
+    NSDate *date = [Lockbox dateForKey:key];
+    STAssertEqualObjects(date, testDate, @"Retrieved date should match original");
+}
+
+-(void)testSetNoDateForKey
+{
+    NSString *key = @"TestDateKey";
+    STAssertTrue([Lockbox setDate:nil forKey:key], @"Should be able to remove a stored date");
+}
+
+-(void)testRetrieveDateForNoKey
+{
+    NSString *key =@"NonexistentDateKey";
+    STAssertNil([Lockbox dateForKey:key], @"Should return nil (date) for nonexistent key");
+}
+
 @end
