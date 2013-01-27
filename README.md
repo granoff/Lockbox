@@ -51,9 +51,11 @@ it accessible only while the device is unlocked, and will not migrate this
 item to a new device or installation. The methods without a specific
 `accessibility` argument will use `kSecAttrAccessibleWhenUnlocked`, the default in recent iOS versions.
 
-## Requirements
+## Requirements & Limitations
 
 To use this class you will need to add the `Security` framework to your project.
+
+This class was written for use under Cocoa Touch and iOS. The code and tests run fine in the iOS simulator under Mac OS. But there are some issues using this class under Cocoa and Mac OS. There are some keychain API differences between the 2 platforms, as it happens. Feel free to fork this repo to make it work for both Cocoa and Cocoa Touch and I'll be happy to consider your pull request!
 
 ## License
 
