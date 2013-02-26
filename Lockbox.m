@@ -13,7 +13,7 @@
 
 #if __has_feature(objc_arc)
 #define LOCKBOX_ID __bridge id
-#define LOCKBOX_DICTREF _bridge CFDictionaryRef
+#define LOCKBOX_DICTREF __bridge CFDictionaryRef
 #else
 #define LOCKBOX_ID id
 #define LOCKBOX_DICTREF CFDictionaryRef
