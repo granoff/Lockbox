@@ -13,7 +13,7 @@
 
 #if __has_feature(objc_arc)
 #define LOCKBOX_ID __bridge id
-#define LOCKBOX_DICTREF _bridge CFDictionaryRef
+#define LOCKBOX_DICTREF __bridge CFDictionaryRef
 #else
 #define LOCKBOX_ID id
 #define LOCKBOX_DICTREF CFDictionaryRef
@@ -70,7 +70,7 @@ static NSString *_bundleId = nil;
     
     NSMutableDictionary *dict = [self _service];
     [dict setObject: hierKey forKey: (LOCKBOX_ID) kSecAttrService];
-    [dict setObject: accessibility forKey: (LOCKBOX_ID) kSecAttrAccessible];
+    [dict setObject: (LOCKBOX_ID)(accessibility) forKey: (LOCKBOX_ID) kSecAttrAccessible];
     [dict setObject: [obj dataUsingEncoding:NSUTF8StringEncoding] forKey: (LOCKBOX_ID) kSecValueData];
     
     status = SecItemAdd ((LOCKBOX_DICTREF) dict, NULL);
