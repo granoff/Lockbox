@@ -70,7 +70,7 @@ static NSString *_bundleId = nil;
     
     NSMutableDictionary *dict = [self _service];
     [dict setObject: hierKey forKey: (LOCKBOX_ID) kSecAttrService];
-    [dict setObject: (__bridge id)(accessibility) forKey: (LOCKBOX_ID) kSecAttrAccessible];
+    [dict setObject: (LOCKBOX_ID)(accessibility) forKey: (LOCKBOX_ID) kSecAttrAccessible];
     [dict setObject: [obj dataUsingEncoding:NSUTF8StringEncoding] forKey: (LOCKBOX_ID) kSecValueData];
     
     status = SecItemAdd ((LOCKBOX_DICTREF) dict, NULL);
