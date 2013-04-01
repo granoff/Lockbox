@@ -25,7 +25,7 @@ static NSString *_bundleId = nil;
 
 +(void)initialize
 {
-    _bundleId = [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString*)kCFBundleIdentifierKey];
+    _bundleId = [[[NSBundle bundleForClass:[self class]] infoDictionary] objectForKey:(NSString*)kCFBundleIdentifierKey];
 }
 
 +(NSMutableDictionary *)_service
