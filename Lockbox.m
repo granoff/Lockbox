@@ -97,7 +97,7 @@ static NSString *_bundleId = nil;
     CFDataRef data = nil;
     OSStatus status =
     SecItemCopyMatching ( (LOCKBOX_DICTREF) query, (CFTypeRef *) &data );
-    if (status != errSecSuccess)
+    if (status != errSecSuccess && status != errSecItemNotFound)
         NSLog(@"SecItemCopyMatching failed for key %@: %ld", hierKey, status);
     
     if (!data)
