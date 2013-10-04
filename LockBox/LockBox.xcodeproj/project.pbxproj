@@ -25,6 +25,7 @@
 		4D68021016B489AB000CED0E /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 4D68020D16B489AB000CED0E /* LICENSE */; };
 		4D68021116B489AB000CED0E /* Lockbox.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 4D68020E16B489AB000CED0E /* Lockbox.podspec */; };
 		4D68021216B489AB000CED0E /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 4D68020F16B489AB000CED0E /* README.md */; };
+		4DE9819617FF3C3000E7D452 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4DE9819517FF3C3000E7D452 /* Default-568h@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +65,7 @@
 		4D68020D16B489AB000CED0E /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		4D68020E16B489AB000CED0E /* Lockbox.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Lockbox.podspec; path = ../Lockbox.podspec; sourceTree = "<group>"; };
 		4D68020F16B489AB000CED0E /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		4DE9819517FF3C3000E7D452 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +96,7 @@
 		2D0B9E541540556D00E5BE71 = {
 			isa = PBXGroup;
 			children = (
+				4DE9819517FF3C3000E7D452 /* Default-568h@2x.png */,
 				2D0B9E691540556E00E5BE71 /* LockBox */,
 				4D6801ED16B478CB000CED0E /* UnitTests */,
 				2D0B9E621540556E00E5BE71 /* Frameworks */,
@@ -224,7 +227,7 @@
 		2D0B9E561540556D00E5BE71 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0430;
+				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Hawk iMedia";
 			};
 			buildConfigurationList = 2D0B9E591540556D00E5BE71 /* Build configuration list for PBXProject "LockBox" */;
@@ -255,6 +258,7 @@
 				4D68021016B489AB000CED0E /* LICENSE in Resources */,
 				4D68021116B489AB000CED0E /* Lockbox.podspec in Resources */,
 				4D68021216B489AB000CED0E /* README.md in Resources */,
+				4DE9819617FF3C3000E7D452 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -346,8 +350,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = NO;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -359,10 +368,14 @@
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -371,14 +384,22 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = NO;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
@@ -436,7 +457,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = "$(PLATFORM_DEVELOPER_USR_DIR)/**";
 				ONLY_ACTIVE_ARCH = YES;
-				OTHER_LDFLAGS = "-lgcov";
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = octest;
@@ -463,7 +484,7 @@
 				INFOPLIST_FILE = "UnitTests/UnitTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = "$(PLATFORM_DEVELOPER_USR_DIR)/**";
-				OTHER_LDFLAGS = "-lgcov";
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = octest;
