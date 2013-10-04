@@ -58,7 +58,7 @@ To use this class you will need to add the `Security` framework to your project.
 This class was written for use under Cocoa Touch and iOS. The code and tests run fine in the iOS simulator under Mac OS. But there are some issues using this class under Cocoa and Mac OS. There are some keychain API differences between the 2 platforms, as it happens. Feel free to fork this repo to make it work for both Cocoa and Cocoa Touch and I'll be happy to consider your pull request!
 
 ## Docs
-Link to 1.4.3 docs: [cocoadocs.org/docsets/Lockbox/1.4.3](http://cocoadocs.org/docsets/Lockbox/1.4.3/)  
+Link to 1.4.4 docs: [cocoadocs.org/docsets/Lockbox/1.4.3](http://cocoadocs.org/docsets/Lockbox/1.4.4/)  
 
 ## License
 
