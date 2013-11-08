@@ -1,1 +1,2 @@
 language: objective-c
+script: xcodebuild -project LockBox/LockBox.xcodeproj/ -sdk iphonesimulator -scheme LockBox ONLY_ACTIVE_ARCH=NO clean build test
