@@ -9,13 +9,15 @@
 #import "ViewController.h"
 #import "Lockbox.h"
 
-#define kMyKeyString    @"MyKeyString"
-#define kMyKeyArray     @"MyKeyArray"
-#define kMyKeySet       @"MyKeySet"
+#define kMyKeyString        @"MyKeyString"
+#define kMyKeyArray         @"MyKeyArray"
+#define kMyKeySet           @"MyKeySet"
+#define kMyKeyDictionary    @"MyKeyDictionary"
 
-#define kSaveAsString 0
-#define kSaveAsArray  1
-#define kSaveAsSet    2
+#define kSaveAsString       0
+#define kSaveAsArray        1
+#define kSaveAsSet          2
+#define kSaveAsDictionary   3
 
 @interface ViewController ()
 
@@ -82,6 +84,16 @@
             break;
         }
             
+        case kSaveAsDictionary:
+        {
+            value = [value stringByAppendingString:@" - dictionary element"];
+            NSDictionary * dictionary = value ? @{@"key 1" : [value stringByAppendingString:@" 1"],
+                                                  @"key 2" : [value stringByAppendingString:@" 2"],
+                                                  @"key 3" : [value stringByAppendingString:@" 3"]} : nil;
+            result = [Lockbox setDictionary:dictionary forKey:kMyKeyDictionary];
+            break;
+        }
+            
         default:
             break;
     }
@@ -115,8 +127,15 @@
         {
             NSSet *set = [Lockbox setForKey:kMyKeySet];
             value = [[set allObjects] componentsJoinedByString:@"\n"];
+            break;
         }
             
+        case kSaveAsDictionary:
+        {
+            NSDictionary * dictionary = [Lockbox dictionaryForKey:kMyKeyDictionary];
+            value = dictionary.description;
+            break;
+        }
             
         default:
             break;
