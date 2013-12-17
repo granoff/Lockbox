@@ -19,6 +19,10 @@
 +(BOOL)setSet:(NSSet *)value forKey:(NSString *)key accessibility:(CFTypeRef)accessibility;
 +(NSSet *)setForKey:(NSString *)key;
 
++(BOOL)setDictionary:(NSDictionary *)value forKey:(NSString *)key;
++(BOOL)setDictionary:(NSDictionary *)value forKey:(NSString *)key accessibility:(CFTypeRef)accessibility;
++(NSDictionary *)dictionaryForKey:(NSString *)key;
+
 +(BOOL)setDate:(NSDate *)value forKey:(NSString *)key;
 +(BOOL)setDate:(NSDate *)value forKey:(NSString *)key accessibility:(CFTypeRef)accessibility;
 +(NSDate *)dateForKey:(NSString *)key;
