@@ -14,6 +14,7 @@
     NSString *testString;
     NSArray *testArray;
     NSSet *testSet;
+    NSDictionary *testDictionary;
     NSDate *testDate;
 }
 
@@ -22,6 +23,9 @@
     testString = @"TestString";
     testArray = @[ @"A", @"B", @"C" ];
     testSet = [NSSet setWithArray:testArray];
+    testDictionary = @{@"Key 1": @"A",
+                       @"Key 2": @"B",
+                       @"Key 3": @"C"};
     testDate = [NSDate date];
 }
 
@@ -64,6 +68,16 @@
     STAssertTrue([Lockbox setSet:testSet forKey:key], @"Should be able to store a set");
     NSSet *set = [Lockbox setForKey:key];
     STAssertEqualObjects(set, testSet, @"Retrieved set should match original");
+    
+    [NSThread sleepForTimeInterval:1.0];
+}
+
+-(void)testSetDictionaryForKey
+{
+    NSString *key = @"TestDictionaryKey";
+    STAssertTrue([Lockbox setDictionary:testDictionary forKey:key], @"Should be able to store a dictionary");
+    NSDictionary *dictionary = [Lockbox dictionaryForKey:key];
+    STAssertEqualObjects(dictionary, testDictionary, @"Retrieved dictionary should match original");
     
     [NSThread sleepForTimeInterval:1.0];
 }
