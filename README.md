@@ -17,7 +17,7 @@ The thing to realize is that data stored in `NSUserDefaults` is stored in the cl
 
 Surprisingly, new and experienced app developers alike often do not realize this, until it's too late.
 
-The Lockbox class methods make it easy to store and retrieve `NSString`s, `NSArray`s, `NSSet`s, and `NSDate`s into and from the key chain. You are spared having to deal with the keychain APIs directly!
+The Lockbox class methods make it easy to store and retrieve `NSString`s, `NSArray`s, `NSSet`s, `NSDictionary`s, and `NSDate`s into and from the key chain. You are spared having to deal with the keychain APIs directly!
 
 One caveat here is that the keychain is really not meant to store large chunks of data, so don't try and store a huge array of data with these APIs simply because you want it secure. In this case, consider alternative encryption techniques.
 
@@ -34,6 +34,9 @@ There are three pairs of methods, but method pairs for other container classes w
 + `+setSet:forKey:`
 + `+setSet:forKey:accessibility:`
 + `+setForKey:`
++ `+setDictionary:forKey:`
++ `+setDictionary:forKey:accessibility:`
++ `+dictionaryForKey:`
 + `+setDateForKey:`
 + `+setDateForKey:accessibility:`
 + `+dateForKey:`
