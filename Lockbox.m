@@ -142,7 +142,10 @@ static NSString *_bundleId = nil;
 
 +(BOOL)setArray:(NSArray *)value forKey:(NSString *)key accessibility:(CFTypeRef)accessibility
 {
-    NSString *components = [value componentsJoinedByString:kDelimiter];
+    NSString *components = nil;
+    if (value != nil && value.count > 0) {
+        components = [value componentsJoinedByString:kDelimiter];
+    }
     return [self setObject:components forKey:key accessibility:accessibility];
 }
 
@@ -228,6 +231,11 @@ static NSString *_bundleId = nil;
     if (dateString)
         return [NSDate dateWithTimeIntervalSinceReferenceDate:[dateString doubleValue]];
     return nil;
+}
+
++(BOOL)clearValueForKey:(NSString *)key
+{
+    return [self setObject:nil forKey:key accessibility:DEFAULT_ACCESSIBILITY];
 }
 
 @end
