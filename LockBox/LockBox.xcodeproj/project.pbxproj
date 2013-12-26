@@ -17,6 +17,7 @@
 		2D0B9E7A1540556E00E5BE71 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D0B9E781540556E00E5BE71 /* ViewController.xib */; };
 		2D0B9E821540558B00E5BE71 /* Lockbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D0B9E811540558B00E5BE71 /* Lockbox.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		2D0B9E841540565000E5BE71 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D0B9E831540565000E5BE71 /* Security.framework */; };
+		458DE0BC186BE3C900859047 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 458DE0BB186BE3C900859047 /* NSData+Base64.m */; };
 		4D6801EA16B478CB000CED0E /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D6801E916B478CB000CED0E /* SenTestingKit.framework */; };
 		4D6801EB16B478CB000CED0E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D0B9E631540556E00E5BE71 /* UIKit.framework */; };
 		4D6801EC16B478CB000CED0E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D0B9E651540556E00E5BE71 /* Foundation.framework */; };
@@ -55,6 +56,8 @@
 		2D0B9E801540558B00E5BE71 /* Lockbox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = Lockbox.h; path = ../../Lockbox.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		2D0B9E811540558B00E5BE71 /* Lockbox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = Lockbox.m; path = ../../Lockbox.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		2D0B9E831540565000E5BE71 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		458DE0BA186BE3C900859047 /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64.h"; sourceTree = "<group>"; };
+		458DE0BB186BE3C900859047 /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
 		4D6801E816B478CB000CED0E /* UnitTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D6801E916B478CB000CED0E /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		4D6801EF16B478CB000CED0E /* UnitTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "UnitTests-Info.plist"; sourceTree = "<group>"; };
@@ -131,6 +134,8 @@
 			children = (
 				2D0B9E801540558B00E5BE71 /* Lockbox.h */,
 				2D0B9E811540558B00E5BE71 /* Lockbox.m */,
+				458DE0BA186BE3C900859047 /* NSData+Base64.h */,
+				458DE0BB186BE3C900859047 /* NSData+Base64.m */,
 				2D0B9E721540556E00E5BE71 /* AppDelegate.h */,
 				2D0B9E731540556E00E5BE71 /* AppDelegate.m */,
 				2D0B9E751540556E00E5BE71 /* ViewController.h */,
@@ -295,6 +300,7 @@
 			files = (
 				2D0B9E701540556E00E5BE71 /* main.m in Sources */,
 				2D0B9E741540556E00E5BE71 /* AppDelegate.m in Sources */,
+				458DE0BC186BE3C900859047 /* NSData+Base64.m in Sources */,
 				2D0B9E771540556E00E5BE71 /* ViewController.m in Sources */,
 				2D0B9E821540558B00E5BE71 /* Lockbox.m in Sources */,
 			);

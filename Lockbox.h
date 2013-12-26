@@ -27,4 +27,8 @@
 +(BOOL)setDate:(NSDate *)value forKey:(NSString *)key accessibility:(CFTypeRef)accessibility;
 +(NSDate *)dateForKey:(NSString *)key;
 
++(BOOL)setSecureObject:(id<NSSecureCoding>)object forKey:(NSString *)key;
++(BOOL)setSecureObject:(id<NSSecureCoding>)object forKey:(NSString *)key accessibility:(CFTypeRef)accessibility;
++(id<NSSecureCoding>)secureObjectForKey:(NSString *)key;
+
 @end
