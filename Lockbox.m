@@ -233,9 +233,4 @@ static NSString *_bundleId = nil;
     return nil;
 }
 
-+(BOOL)clearValueForKey:(NSString *)key
-{
-    return [self setObject:nil forKey:key accessibility:DEFAULT_ACCESSIBILITY];
-}
-
 @end

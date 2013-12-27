@@ -27,6 +27,4 @@
 +(BOOL)setDate:(NSDate *)value forKey:(NSString *)key accessibility:(CFTypeRef)accessibility;
 +(NSDate *)dateForKey:(NSString *)key;
 
-+(BOOL)clearValueForKey:(NSString *)key;
-
 @end
