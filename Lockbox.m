@@ -6,6 +6,7 @@
 //
 
 #import "Lockbox.h"
+#import "NSData+Base64.h"
 #import <Security/Security.h>
 
 #define kDelimiter @"-|-"
@@ -227,6 +228,29 @@ static NSString *_bundleId = nil;
     NSString *dateString = [self objectForKey:key];
     if (dateString)
         return [NSDate dateWithTimeIntervalSinceReferenceDate:[dateString doubleValue]];
+    return nil;
+}
+
++(BOOL)setSecureObject:(id<NSSecureCoding>)object forKey:(NSString *)key
+{
+    return [self setSecureObject:object forKey:key accessibility:DEFAULT_ACCESSIBILITY];
+}
+
++(BOOL)setSecureObject:(id<NSSecureCoding>)object forKey:(NSString *)key accessibility:(CFTypeRef)accessibility
+{
+    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:object];
+    NSString *dataString = [data base64EncodedString];
+    return [self setObject:dataString forKey:key accessibility:accessibility];
+}
+
++(id<NSSecureCoding>)secureObjectForKey:(NSString *)key
+{
+    NSData *data = nil;
+    NSString *dataString = [self objectForKey:key];
+    if (dataString)
+        data = [NSData dataFromBase64String:dataString];
+    if (data)
+        return [NSKeyedUnarchiver unarchiveObjectWithData:data];
     return nil;
 }
 
