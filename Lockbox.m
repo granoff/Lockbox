@@ -201,7 +201,7 @@ static NSString *_bundleId = nil;
     
     if ((keysAndValues.count % 2) != 0)
     {
-        NSLog(@"Dictionary for %@ was not saved properly to keychain", key);
+        NSLog(@"Dictionary was not saved properly to keychain");
         return nil;
     }
     
