@@ -142,7 +142,10 @@ static NSString *_bundleId = nil;
 
 +(BOOL)setArray:(NSArray *)value forKey:(NSString *)key accessibility:(CFTypeRef)accessibility
 {
-    NSString *components = [value componentsJoinedByString:kDelimiter];
+    NSString *components = nil;
+    if (value != nil && value.count > 0) {
+        components = [value componentsJoinedByString:kDelimiter];
+    }
     return [self setObject:components forKey:key accessibility:accessibility];
 }
 

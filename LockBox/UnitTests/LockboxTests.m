@@ -110,4 +110,35 @@
     STAssertNil([Lockbox dateForKey:key], @"Should return nil (date) for nonexistent key");
 }
 
+-(void)testNilDictionary
+{
+    NSString *key = @"testDict";
+    NSDictionary *testDict = @{ @"test1" : @"value1", @"test2" : @"value2" };
+    STAssertTrue([Lockbox setDictionary:testDict forKey:key], @"Set Dictionary value for key 'testDict'");
+
+    NSDictionary *savedDict = [Lockbox dictionaryForKey:key];
+    STAssertTrue(savedDict != nil, @"Retrieved Dictionary for key 'testDict'");
+    STAssertTrue([savedDict allKeys].count == 2, @"Key count matches stored Dictionary");
+    STAssertTrue([savedDict[@"test1"] isEqualToString:@"value1"], @"Retrieve Dictionary 'value1' for Dictionary key 'test1'");
+    
+    STAssertTrue([Lockbox setDictionary:nil forKey:key], @"Setting Dictionary value to nil for key 'testDict'");
+    STAssertNil([Lockbox dictionaryForKey:key], @"Confirm Dictionary has been cleared from Lockbox");
+}
+
+- (void)testNilArray
+{
+    NSString *key = @"testArr";
+    NSArray *testArr = @[ @"value1", @"value2", @"value3" ];
+    STAssertTrue([Lockbox setArray:testArr forKey:key], @"Set Array value for key 'testArr'");
+    
+    NSArray *savedArr = [Lockbox arrayForKey:key];
+    STAssertTrue(savedArr != nil, @"Retrieved Array for key 'testArr'");
+    STAssertTrue(savedArr.count == 3, @"Array count matches stored Array");
+    STAssertTrue([savedArr[1] isEqualToString:@"value2"], @"Retrieve Array value 'value2' at index 1");
+    
+    STAssertTrue([Lockbox setArray:nil forKey:key], @"Setting Array value to nil for key 'testArr'");
+    STAssertNil([Lockbox arrayForKey:key], @"Confirm Array has been cleared from Lockbox");
+
+}
+
 @end
