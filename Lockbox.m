@@ -8,6 +8,15 @@
 #import "Lockbox.h"
 #import <Security/Security.h>
 
+// Define DLog if user hasn't already defined his own implementation
+#ifndef DLog
+#ifdef DEBUG
+#define DLog(fmt, ...) NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
+#else
+#define DLog(...)
+#endif
+#endif
+
 #define kDelimiter @"-|-"
 #define DEFAULT_ACCESSIBILITY kSecAttrAccessibleWhenUnlocked
 
@@ -82,7 +91,7 @@ static NSString *_bundleId = nil;
             status = SecItemAdd((LOCKBOX_DICTREF) dict, NULL);
     }
     if (status != errSecSuccess)
-        NSLog(@"SecItemAdd failed for key %@: %d", hierKey, (int)status);
+        DLog(@"SecItemAdd failed for key %@: %d", hierKey, (int)status);
     
     return (status == errSecSuccess);
 }
@@ -98,7 +107,7 @@ static NSString *_bundleId = nil;
     OSStatus status =
     SecItemCopyMatching ( (LOCKBOX_DICTREF) query, (CFTypeRef *) &data );
     if (status != errSecSuccess && status != errSecItemNotFound)
-        NSLog(@"SecItemCopyMatching failed for key %@: %d", hierKey, (int)status);
+        DLog(@"SecItemCopyMatching failed for key %@: %d", hierKey, (int)status);
     
     if (!data)
         return nil;
@@ -201,7 +210,7 @@ static NSString *_bundleId = nil;
     
     if ((keysAndValues.count % 2) != 0)
     {
-        NSLog(@"Dictionary for %@ was not saved properly to keychain", key);
+        DLog(@"Dictionary for %@ was not saved properly to keychain", key);
         return nil;
     }
     
