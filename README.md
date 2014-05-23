@@ -62,6 +62,14 @@ To use this class you will need to add the `Security` framework to your project.
 
 This class was written for use under Cocoa Touch and iOS. The code and tests run fine in the iOS simulator under Mac OS. But there are some issues using this class under Cocoa and Mac OS. There are some keychain API differences between the 2 platforms, as it happens. Feel free to fork this repo to make it work for both Cocoa and Cocoa Touch and I'll be happy to consider your pull request!
 
+### Note on running unittests on device
+If you experience SecItemCopyMatching errors with code 34018 on Lockbox methods while running your app unit tests target on device, your can avoid these by code signing your unit tests .xcttest folder. 
+
+Add Run Script phase to your unit tests target Build Phases with:
+
+`codesign --verify --force --sign "$CODE_SIGN_IDENTITY" "$CODESIGNING_FOLDER_PATH"`
+
+
 ## Docs
 Link to latest CocoaDocs: [cocoadocs.org/docsets/Lockbox/](http://cocoadocs.org/docsets/Lockbox/)  
 
