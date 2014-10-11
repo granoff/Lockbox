@@ -6,8 +6,8 @@
 //  Copyright (c) 2013 Hawk iMedia. All rights reserved.
 //
 
-#import <SenTestingKit/SenTestingKit.h>
+#import <XCTest/XCTest.h>
 
-@interface LockboxTests : SenTestCase
+@interface LockboxTests : XCTestCase
 
 @end

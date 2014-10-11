@@ -20,13 +20,8 @@
 #define kDelimiter @"-|-"
 #define DEFAULT_ACCESSIBILITY kSecAttrAccessibleWhenUnlocked
 
-#if __has_feature(objc_arc)
 #define LOCKBOX_ID __bridge id
 #define LOCKBOX_DICTREF __bridge CFDictionaryRef
-#else
-#define LOCKBOX_ID id
-#define LOCKBOX_DICTREF CFDictionaryRef
-#endif
 
 static NSString *_bundleId = nil;
 
@@ -112,21 +107,9 @@ static NSString *_bundleId = nil;
     if (!data)
         return nil;
 
-    NSString *s = [[NSString alloc] 
-                    initWithData: 
-#if __has_feature(objc_arc)
-                   (__bridge_transfer NSData *)data 
-#else
-                   (NSData *)data
-#endif
-                    encoding: NSUTF8StringEncoding];
-
-#if !__has_feature(objc_arc)
-    [s autorelease];
-    CFRelease(data);
-#endif
+    NSString *s = [[NSString alloc] initWithData:(__bridge_transfer NSData *)data encoding: NSUTF8StringEncoding];
     
-    return s;    
+    return s;
 }
 
 +(BOOL)setString:(NSString *)value forKey:(NSString *)key

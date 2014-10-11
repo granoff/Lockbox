@@ -21,6 +21,10 @@ The Lockbox class methods make it easy to store and retrieve `NSString`s, `NSArr
 
 One caveat here is that the keychain is really not meant to store large chunks of data, so don't try and store a huge array of data with these APIs simply because you want it secure. In this case, consider alternative encryption techniques.
 
+## ARC Support
+
+As of v2.0, Lockbox is ARC-only. For non-ARC support, use v1.4.9.
+
 ## Methods
 
 There are three pairs of methods, but method pairs for other container classes would not be hard to implement:

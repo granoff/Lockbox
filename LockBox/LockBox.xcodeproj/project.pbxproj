@@ -15,9 +15,8 @@
 		2D0B9E741540556E00E5BE71 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D0B9E731540556E00E5BE71 /* AppDelegate.m */; };
 		2D0B9E771540556E00E5BE71 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D0B9E761540556E00E5BE71 /* ViewController.m */; };
 		2D0B9E7A1540556E00E5BE71 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D0B9E781540556E00E5BE71 /* ViewController.xib */; };
-		2D0B9E821540558B00E5BE71 /* Lockbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D0B9E811540558B00E5BE71 /* Lockbox.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		2D0B9E821540558B00E5BE71 /* Lockbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D0B9E811540558B00E5BE71 /* Lockbox.m */; };
 		2D0B9E841540565000E5BE71 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D0B9E831540565000E5BE71 /* Security.framework */; };
-		4D6801EA16B478CB000CED0E /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D6801E916B478CB000CED0E /* SenTestingKit.framework */; };
 		4D6801EB16B478CB000CED0E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D0B9E631540556E00E5BE71 /* UIKit.framework */; };
 		4D6801EC16B478CB000CED0E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D0B9E651540556E00E5BE71 /* Foundation.framework */; };
 		4D6801F216B478CB000CED0E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4D6801F016B478CB000CED0E /* InfoPlist.strings */; };
@@ -55,8 +54,7 @@
 		2D0B9E801540558B00E5BE71 /* Lockbox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = Lockbox.h; path = ../../Lockbox.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		2D0B9E811540558B00E5BE71 /* Lockbox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = Lockbox.m; path = ../../Lockbox.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		2D0B9E831540565000E5BE71 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		4D6801E816B478CB000CED0E /* UnitTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
-		4D6801E916B478CB000CED0E /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		4D6801E816B478CB000CED0E /* UnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D6801EF16B478CB000CED0E /* UnitTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "UnitTests-Info.plist"; sourceTree = "<group>"; };
 		4D6801F116B478CB000CED0E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		4D6801F616B478CB000CED0E /* UnitTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UnitTests-Prefix.pch"; sourceTree = "<group>"; };
@@ -84,7 +82,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4D6801EA16B478CB000CED0E /* SenTestingKit.framework in Frameworks */,
 				4D6801EB16B478CB000CED0E /* UIKit.framework in Frameworks */,
 				4D6801EC16B478CB000CED0E /* Foundation.framework in Frameworks */,
 			);
@@ -109,7 +106,7 @@
 			isa = PBXGroup;
 			children = (
 				2D0B9E5F1540556E00E5BE71 /* LockBox.app */,
-				4D6801E816B478CB000CED0E /* UnitTests.octest */,
+				4D6801E816B478CB000CED0E /* UnitTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -121,7 +118,6 @@
 				2D0B9E631540556E00E5BE71 /* UIKit.framework */,
 				2D0B9E651540556E00E5BE71 /* Foundation.framework */,
 				2D0B9E671540556E00E5BE71 /* CoreGraphics.framework */,
-				4D6801E916B478CB000CED0E /* SenTestingKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -218,8 +214,8 @@
 			);
 			name = UnitTests;
 			productName = UnitTests;
-			productReference = 4D6801E816B478CB000CED0E /* UnitTests.octest */;
-			productType = "com.apple.product-type.bundle";
+			productReference = 4D6801E816B478CB000CED0E /* UnitTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -227,7 +223,8 @@
 		2D0B9E561540556D00E5BE71 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0500;
+				LastTestingUpgradeCheck = 0600;
+				LastUpgradeCheck = 0600;
 				ORGANIZATIONNAME = "Hawk iMedia";
 			};
 			buildConfigurationList = 2D0B9E591540556D00E5BE71 /* Build configuration list for PBXProject "LockBox" */;
@@ -350,15 +347,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ENABLE_OBJC_ARC = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -384,15 +383,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ENABLE_OBJC_ARC = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -448,6 +449,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
 					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+					"$(inherited)",
 				);
 				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
 				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
@@ -457,10 +459,13 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = "$(PLATFORM_DEVELOPER_USR_DIR)/**";
 				ONLY_ACTIVE_ARCH = YES;
-				OTHER_LDFLAGS = "";
+				OTHER_LDFLAGS = (
+					"-Objc",
+					"-framework",
+					XCTest,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
 			};
 			name = Debug;
 		};
@@ -476,6 +481,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
 					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+					"$(inherited)",
 				);
 				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
 				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
@@ -484,10 +490,13 @@
 				INFOPLIST_FILE = "UnitTests/UnitTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = "$(PLATFORM_DEVELOPER_USR_DIR)/**";
-				OTHER_LDFLAGS = "";
+				OTHER_LDFLAGS = (
+					"-Objc",
+					"-framework",
+					XCTest,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
 			};
 			name = Release;
 		};

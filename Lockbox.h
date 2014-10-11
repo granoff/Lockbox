@@ -5,6 +5,8 @@
 //  Copyright (c) 2012 Hawk iMedia. All rights reserved.
 //
 
+#import <UIKit/UIKit.h>
+
 @interface Lockbox : NSObject
 
 +(BOOL)setString:(NSString *)value forKey:(NSString *)key;
