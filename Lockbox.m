@@ -23,16 +23,33 @@
 #define LOCKBOX_ID __bridge id
 #define LOCKBOX_DICTREF __bridge CFDictionaryRef
 
-static NSString *_keyPrefix = nil;
+@interface Lockbox ()
+
+@property (nonatomic, strong) NSString *keyPrefix;
+
+@end
 
 @implementation Lockbox
 
-+(void)initialize
+-(instancetype)init
 {
-    _keyPrefix = [[[NSBundle bundleForClass:[self class]] infoDictionary] objectForKey:(NSString*)kCFBundleIdentifierKey];
+    if (self = [super init]) {
+        self.keyPrefix = [[[NSBundle bundleForClass:[self class]] infoDictionary] objectForKey:(NSString*)kCFBundleIdentifierKey];
+    }
+    return self;
 }
 
-+(NSMutableDictionary *)_service
+-(instancetype)initWithKeyPrefix:(NSString *)keyPrefix
+{
+    if (self = [self init]) {
+        if (keyPrefix) {
+            self.keyPrefix = keyPrefix;
+        }
+    }
+    return self;
+}
+
+-(NSMutableDictionary *)_service
 {
     NSMutableDictionary* dict = [NSMutableDictionary dictionary];
     
@@ -41,7 +58,7 @@ static NSString *_keyPrefix = nil;
     return dict;
 }
 
-+(NSMutableDictionary *)_query
+-(NSMutableDictionary *)_query
 {
     NSMutableDictionary* query = [NSMutableDictionary dictionary];
     
@@ -53,17 +70,12 @@ static NSString *_keyPrefix = nil;
 
 // Prefix a bare key like "MySecureKey", so the actual key stored is unique to this app,
 // e.g. "com.mycompany.myapp.MySecretKey". Default prefix is the bundle id.
-+(NSString *)_hierarchicalKey:(NSString *)key
+-(NSString *)_hierarchicalKey:(NSString *)key
 {
-    return [_keyPrefix stringByAppendingFormat:@".%@", key];
+    return [self.keyPrefix stringByAppendingFormat:@".%@", key];
 }
 
-+(void)setKeyPrefix:(NSString *)keyPrefix
-{
-    _keyPrefix = keyPrefix;
-}
-
-+(BOOL)setObject:(NSString *)obj forKey:(NSString *)key accessibility:(CFTypeRef)accessibility
+-(BOOL)setObject:(NSString *)obj forKey:(NSString *)key accessibility:(CFTypeRef)accessibility
 {
     OSStatus status;
     
@@ -96,7 +108,7 @@ static NSString *_keyPrefix = nil;
     return (status == errSecSuccess);
 }
 
-+(NSString *)objectForKey:(NSString *)key
+-(NSString *)objectForKey:(NSString *)key
 {
     NSString *hierKey = [self _hierarchicalKey:key];
 
@@ -117,27 +129,27 @@ static NSString *_keyPrefix = nil;
     return s;
 }
 
-+(BOOL)setString:(NSString *)value forKey:(NSString *)key
+-(BOOL)setString:(NSString *)value forKey:(NSString *)key
 {
     return [self setString:value forKey:key accessibility:DEFAULT_ACCESSIBILITY];
 }
 
-+(BOOL)setString:(NSString *)value forKey:(NSString *)key accessibility:(CFTypeRef)accessibility
+-(BOOL)setString:(NSString *)value forKey:(NSString *)key accessibility:(CFTypeRef)accessibility
 {
     return [self setObject:value forKey:key accessibility:accessibility];
 }
 
-+(NSString *)stringForKey:(NSString *)key
+-(NSString *)stringForKey:(NSString *)key
 {
     return [self objectForKey:key];
 }
 
-+(BOOL)setArray:(NSArray *)value forKey:(NSString *)key
+-(BOOL)setArray:(NSArray *)value forKey:(NSString *)key
 {
     return [self setArray:value forKey:key accessibility:DEFAULT_ACCESSIBILITY];
 }
 
-+(BOOL)setArray:(NSArray *)value forKey:(NSString *)key accessibility:(CFTypeRef)accessibility
+-(BOOL)setArray:(NSArray *)value forKey:(NSString *)key accessibility:(CFTypeRef)accessibility
 {
     NSString *components = nil;
     if (value != nil && value.count > 0) {
@@ -146,7 +158,7 @@ static NSString *_keyPrefix = nil;
     return [self setObject:components forKey:key accessibility:accessibility];
 }
 
-+(NSArray *)arrayForKey:(NSString *)key
+-(NSArray *)arrayForKey:(NSString *)key
 {
     NSArray *array = nil;
     NSString *components = [self objectForKey:key];
@@ -156,17 +168,17 @@ static NSString *_keyPrefix = nil;
     return array;
 }
 
-+(BOOL)setSet:(NSSet *)value forKey:(NSString *)key
+-(BOOL)setSet:(NSSet *)value forKey:(NSString *)key
 {
     return [self setSet:value forKey:key accessibility:DEFAULT_ACCESSIBILITY];
 }
 
-+(BOOL)setSet:(NSSet *)value forKey:(NSString *)key accessibility:(CFTypeRef)accessibility
+-(BOOL)setSet:(NSSet *)value forKey:(NSString *)key accessibility:(CFTypeRef)accessibility
 {
     return [self setArray:[value allObjects] forKey:key accessibility:accessibility];
 }
 
-+(NSSet *)setForKey:(NSString *)key
+-(NSSet *)setForKey:(NSString *)key
 {
     NSSet *set = nil;
     NSArray *array = [self arrayForKey:key];
@@ -176,12 +188,12 @@ static NSString *_keyPrefix = nil;
     return set;
 }
 
-+ (BOOL)setDictionary:(NSDictionary *)value forKey:(NSString *)key
+-(BOOL)setDictionary:(NSDictionary *)value forKey:(NSString *)key
 {
     return [self setDictionary:value forKey:key accessibility:DEFAULT_ACCESSIBILITY];
 }
 
-+ (BOOL)setDictionary:(NSDictionary *)value forKey:(NSString *)key accessibility:(CFTypeRef)accessibility
+-(BOOL)setDictionary:(NSDictionary *)value forKey:(NSString *)key accessibility:(CFTypeRef)accessibility
 {
     NSMutableArray * keysAndValues = [NSMutableArray arrayWithArray:value.allKeys];
     [keysAndValues addObjectsFromArray:value.allValues];
@@ -189,7 +201,7 @@ static NSString *_keyPrefix = nil;
     return [self setArray:keysAndValues forKey:key accessibility:accessibility];
 }
 
-+ (NSDictionary *)dictionaryForKey:(NSString *)key
+-(NSDictionary *)dictionaryForKey:(NSString *)key
 {
     NSArray * keysAndValues = [self arrayForKey:key];
     
@@ -209,12 +221,12 @@ static NSString *_keyPrefix = nil;
                                        forKeys:[keysAndValues subarrayWithRange:keys]];
 }
 
-+(BOOL)setDate:(NSDate *)value forKey:(NSString *)key
+-(BOOL)setDate:(NSDate *)value forKey:(NSString *)key
 {
     return [self setDate:value forKey:key accessibility:DEFAULT_ACCESSIBILITY];
 }
 
-+(BOOL)setDate:(NSDate *)value forKey:(NSString *)key accessibility:(CFTypeRef)accessibility
+-(BOOL)setDate:(NSDate *)value forKey:(NSString *)key accessibility:(CFTypeRef)accessibility
 {
     if (!value)
         return [self setObject:nil forKey:key accessibility:accessibility];
@@ -222,7 +234,7 @@ static NSString *_keyPrefix = nil;
     return [self setObject:[rti stringValue] forKey:key accessibility:accessibility];
 }
 
-+(NSDate *)dateForKey:(NSString *)key
+-(NSDate *)dateForKey:(NSString *)key
 {
     NSString *dateString = [self objectForKey:key];
     if (dateString)

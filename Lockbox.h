@@ -9,26 +9,27 @@
 
 @interface Lockbox : NSObject
 
-+(void)setKeyPrefix:(NSString *)keyPrefix;
+// Use this initialiser to override the default key prefix, the bundle id.
+-(instancetype)initWithKeyPrefix:(NSString *)keyPrefix;
 
-+(BOOL)setString:(NSString *)value forKey:(NSString *)key;
-+(BOOL)setString:(NSString *)value forKey:(NSString *)key accessibility:(CFTypeRef)accessibility;
-+(NSString *)stringForKey:(NSString *)key;
+-(BOOL)setString:(NSString *)value forKey:(NSString *)key;
+-(BOOL)setString:(NSString *)value forKey:(NSString *)key accessibility:(CFTypeRef)accessibility;
+-(NSString *)stringForKey:(NSString *)key;
 
-+(BOOL)setArray:(NSArray *)value forKey:(NSString *)key;
-+(BOOL)setArray:(NSArray *)value forKey:(NSString *)key accessibility:(CFTypeRef)accessibility;
-+(NSArray *)arrayForKey:(NSString *)key;
+-(BOOL)setArray:(NSArray *)value forKey:(NSString *)key;
+-(BOOL)setArray:(NSArray *)value forKey:(NSString *)key accessibility:(CFTypeRef)accessibility;
+-(NSArray *)arrayForKey:(NSString *)key;
 
-+(BOOL)setSet:(NSSet *)value forKey:(NSString *)key;
-+(BOOL)setSet:(NSSet *)value forKey:(NSString *)key accessibility:(CFTypeRef)accessibility;
-+(NSSet *)setForKey:(NSString *)key;
+-(BOOL)setSet:(NSSet *)value forKey:(NSString *)key;
+-(BOOL)setSet:(NSSet *)value forKey:(NSString *)key accessibility:(CFTypeRef)accessibility;
+-(NSSet *)setForKey:(NSString *)key;
 
-+(BOOL)setDictionary:(NSDictionary *)value forKey:(NSString *)key;
-+(BOOL)setDictionary:(NSDictionary *)value forKey:(NSString *)key accessibility:(CFTypeRef)accessibility;
-+(NSDictionary *)dictionaryForKey:(NSString *)key;
+-(BOOL)setDictionary:(NSDictionary *)value forKey:(NSString *)key;
+-(BOOL)setDictionary:(NSDictionary *)value forKey:(NSString *)key accessibility:(CFTypeRef)accessibility;
+-(NSDictionary *)dictionaryForKey:(NSString *)key;
 
-+(BOOL)setDate:(NSDate *)value forKey:(NSString *)key;
-+(BOOL)setDate:(NSDate *)value forKey:(NSString *)key accessibility:(CFTypeRef)accessibility;
-+(NSDate *)dateForKey:(NSString *)key;
+-(BOOL)setDate:(NSDate *)value forKey:(NSString *)key;
+-(BOOL)setDate:(NSDate *)value forKey:(NSString *)key accessibility:(CFTypeRef)accessibility;
+-(NSDate *)dateForKey:(NSString *)key;
 
 @end

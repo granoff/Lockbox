@@ -21,6 +21,8 @@
 
 @interface ViewController ()
 
+@property (nonatomic, strong) Lockbox *lockbox;
+
 @end
 
 @implementation ViewController
@@ -29,6 +31,14 @@
 @synthesize fetchButton;
 @synthesize fetchedValueLabel;
 @synthesize statusLabel;
+
+-(instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+        self.lockbox = [[Lockbox alloc] init];
+    }
+    return self;
+}
 
 - (void)viewDidLoad
 {
@@ -57,7 +67,7 @@
     
     switch (b.tag) {
         case kSaveAsString:
-            result = [Lockbox setString:value forKey:kMyKeyString];
+            result = [self.lockbox setString:value forKey:kMyKeyString];
             break;
             
         case kSaveAsArray:
@@ -68,7 +78,7 @@
                               [value stringByAppendingString:@" 2"], 
                               [value stringByAppendingString:@" 3"],
                               nil];
-            result = [Lockbox setArray:array forKey:kMyKeyArray];
+            result = [self.lockbox setArray:array forKey:kMyKeyArray];
             break;
         }
             
@@ -80,7 +90,7 @@
                           [value stringByAppendingString:@" 2"], 
                           [value stringByAppendingString:@" 3"],
                           nil];
-            result = [Lockbox setSet:set forKey:kMyKeySet];
+            result = [self.lockbox setSet:set forKey:kMyKeySet];
             break;
         }
             
@@ -90,7 +100,7 @@
             NSDictionary * dictionary = value ? @{@"key 1" : [value stringByAppendingString:@" 1"],
                                                   @"key 2" : [value stringByAppendingString:@" 2"],
                                                   @"key 3" : [value stringByAppendingString:@" 3"]} : nil;
-            result = [Lockbox setDictionary:dictionary forKey:kMyKeyDictionary];
+            result = [self.lockbox setDictionary:dictionary forKey:kMyKeyDictionary];
             break;
         }
             
@@ -113,26 +123,26 @@
     
     switch (b.tag) {
         case kSaveAsString:
-            value = [Lockbox stringForKey:kMyKeyString];
+            value = [self.lockbox stringForKey:kMyKeyString];
             break;
             
         case kSaveAsArray:
         {
-            NSArray *array = [Lockbox arrayForKey:kMyKeyArray];
+            NSArray *array = [self.lockbox arrayForKey:kMyKeyArray];
             value = [array componentsJoinedByString:@"\n"];
             break;
         }
             
         case kSaveAsSet:
         {
-            NSSet *set = [Lockbox setForKey:kMyKeySet];
+            NSSet *set = [self.lockbox setForKey:kMyKeySet];
             value = [[set allObjects] componentsJoinedByString:@"\n"];
             break;
         }
             
         case kSaveAsDictionary:
         {
-            NSDictionary * dictionary = [Lockbox dictionaryForKey:kMyKeyDictionary];
+            NSDictionary * dictionary = [self.lockbox dictionaryForKey:kMyKeyDictionary];
             value = dictionary.description;
             break;
         }

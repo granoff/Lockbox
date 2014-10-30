@@ -15,6 +15,7 @@
 
 @implementation LockboxTests
 {
+    Lockbox *lockbox;
     NSString *testString;
     NSArray *testArray;
     NSSet *testSet;
@@ -24,6 +25,7 @@
 
 -(void)setUp
 {
+    lockbox = [[Lockbox alloc] init];
     testString = @"TestString";
     testArray = @[ @"A", @"B", @"C" ];
     testSet = [NSSet setWithArray:testArray];
@@ -41,8 +43,8 @@
 -(void)testSetStringForKey
 {
     NSString *key = @"TestStringKey";
-    XCTAssertTrue([Lockbox setString:testString forKey:key], @"Should be able to store a string");
-    XCTAssertEqualObjects([Lockbox stringForKey:key], testString, @"Retrieved string should match original");
+    XCTAssertTrue([lockbox setString:testString forKey:key], @"Should be able to store a string");
+    XCTAssertEqualObjects([lockbox stringForKey:key], testString, @"Retrieved string should match original");
     
     [NSThread sleepForTimeInterval:1.0];
 }
@@ -50,17 +52,17 @@
 -(void)testDeleteStringForKey
 {
     NSString *key = @"TestStringKey";
-    XCTAssertTrue([Lockbox setString:testString forKey:key], @"Should be able to store a string");
-    XCTAssertEqualObjects([Lockbox stringForKey:key], testString, @"Retrieved string should match original");
-    XCTAssertTrue([Lockbox setString:nil forKey:key], @"Should be able to set string for key to nil");
-    XCTAssertNil([Lockbox stringForKey:key], @"Deleted key should return nil");
+    XCTAssertTrue([lockbox setString:testString forKey:key], @"Should be able to store a string");
+    XCTAssertEqualObjects([lockbox stringForKey:key], testString, @"Retrieved string should match original");
+    XCTAssertTrue([lockbox setString:nil forKey:key], @"Should be able to set string for key to nil");
+    XCTAssertNil([lockbox stringForKey:key], @"Deleted key should return nil");
 }
 
 -(void)testSetArrayForKey
 {
     NSString *key = @"TestArrayKey";
-    XCTAssertTrue([Lockbox setArray:testArray forKey:key], @"Should be able to store an array");
-    NSArray *array = [Lockbox arrayForKey:key];
+    XCTAssertTrue([lockbox setArray:testArray forKey:key], @"Should be able to store an array");
+    NSArray *array = [lockbox arrayForKey:key];
     XCTAssertEqualObjects(array, testArray, @"Retrieved array should match original");
 
     [NSThread sleepForTimeInterval:1.0];
@@ -69,8 +71,8 @@
 -(void)testSetSetForKey
 {
     NSString *key = @"TestSetKey";
-    XCTAssertTrue([Lockbox setSet:testSet forKey:key], @"Should be able to store a set");
-    NSSet *set = [Lockbox setForKey:key];
+    XCTAssertTrue([lockbox setSet:testSet forKey:key], @"Should be able to store a set");
+    NSSet *set = [lockbox setForKey:key];
     XCTAssertEqualObjects(set, testSet, @"Retrieved set should match original");
     
     [NSThread sleepForTimeInterval:1.0];
@@ -79,8 +81,8 @@
 -(void)testSetDictionaryForKey
 {
     NSString *key = @"TestDictionaryKey";
-    XCTAssertTrue([Lockbox setDictionary:testDictionary forKey:key], @"Should be able to store a dictionary");
-    NSDictionary *dictionary = [Lockbox dictionaryForKey:key];
+    XCTAssertTrue([lockbox setDictionary:testDictionary forKey:key], @"Should be able to store a dictionary");
+    NSDictionary *dictionary = [lockbox dictionaryForKey:key];
     XCTAssertEqualObjects(dictionary, testDictionary, @"Retrieved dictionary should match original");
     
     [NSThread sleepForTimeInterval:1.0];
@@ -88,61 +90,79 @@
 
 -(void)testSetSameKeyWithTwoValues
 {
-    XCTAssertTrue([Lockbox setString:@"1" forKey:@"test"], @"Set '1' for key 'test'");
-    XCTAssertTrue([[Lockbox stringForKey:@"test"] isEqualToString:@"1"], @"Retrieve '1' for key 'test'");
-    XCTAssertTrue([Lockbox setString:@"2" forKey:@"test"], @"Set '2' for key 'test'");
-    XCTAssertTrue([[Lockbox stringForKey:@"test"] isEqualToString:@"2"], @"Retrieve '2' for key 'test'");
+    XCTAssertTrue([lockbox setString:@"1" forKey:@"test"], @"Set '1' for key 'test'");
+    XCTAssertTrue([[lockbox stringForKey:@"test"] isEqualToString:@"1"], @"Retrieve '1' for key 'test'");
+    XCTAssertTrue([lockbox setString:@"2" forKey:@"test"], @"Set '2' for key 'test'");
+    XCTAssertTrue([[lockbox stringForKey:@"test"] isEqualToString:@"2"], @"Retrieve '2' for key 'test'");
 }
 
 -(void)testSetDateForKey
 {
     NSString *key = @"TestDateKey";
-    XCTAssertTrue([Lockbox setDate:testDate forKey:key], @"Should be able to store a date");
-    NSDate *date = [Lockbox dateForKey:key];
+    XCTAssertTrue([lockbox setDate:testDate forKey:key], @"Should be able to store a date");
+    NSDate *date = [lockbox dateForKey:key];
     XCTAssertEqualObjects(date, testDate, @"Retrieved date should match original");
 }
 
 -(void)testSetNoDateForKey
 {
     NSString *key = @"TestDateKey";
-    XCTAssertTrue([Lockbox setDate:nil forKey:key], @"Should be able to remove a stored date");
+    XCTAssertTrue([lockbox setDate:nil forKey:key], @"Should be able to remove a stored date");
 }
 
 -(void)testRetrieveDateForNoKey
 {
     NSString *key =@"NonexistentDateKey";
-    XCTAssertNil([Lockbox dateForKey:key], @"Should return nil (date) for nonexistent key");
+    XCTAssertNil([lockbox dateForKey:key], @"Should return nil (date) for nonexistent key");
 }
 
 -(void)testNilDictionary
 {
     NSString *key = @"testDict";
     NSDictionary *testDict = @{ @"test1" : @"value1", @"test2" : @"value2" };
-    XCTAssertTrue([Lockbox setDictionary:testDict forKey:key], @"Set Dictionary value for key 'testDict'");
+    XCTAssertTrue([lockbox setDictionary:testDict forKey:key], @"Set Dictionary value for key 'testDict'");
 
-    NSDictionary *savedDict = [Lockbox dictionaryForKey:key];
+    NSDictionary *savedDict = [lockbox dictionaryForKey:key];
     XCTAssertTrue(savedDict != nil, @"Retrieved Dictionary for key 'testDict'");
     XCTAssertTrue([savedDict allKeys].count == 2, @"Key count matches stored Dictionary");
     XCTAssertTrue([savedDict[@"test1"] isEqualToString:@"value1"], @"Retrieve Dictionary 'value1' for Dictionary key 'test1'");
     
-    XCTAssertTrue([Lockbox setDictionary:nil forKey:key], @"Setting Dictionary value to nil for key 'testDict'");
-    XCTAssertNil([Lockbox dictionaryForKey:key], @"Confirm Dictionary has been cleared from Lockbox");
+    XCTAssertTrue([lockbox setDictionary:nil forKey:key], @"Setting Dictionary value to nil for key 'testDict'");
+    XCTAssertNil([lockbox dictionaryForKey:key], @"Confirm Dictionary has been cleared from Lockbox");
 }
 
 - (void)testNilArray
 {
     NSString *key = @"testArr";
     NSArray *testArr = @[ @"value1", @"value2", @"value3" ];
-    XCTAssertTrue([Lockbox setArray:testArr forKey:key], @"Set Array value for key 'testArr'");
+    XCTAssertTrue([lockbox setArray:testArr forKey:key], @"Set Array value for key 'testArr'");
     
-    NSArray *savedArr = [Lockbox arrayForKey:key];
+    NSArray *savedArr = [lockbox arrayForKey:key];
     XCTAssertTrue(savedArr != nil, @"Retrieved Array for key 'testArr'");
     XCTAssertTrue(savedArr.count == 3, @"Array count matches stored Array");
     XCTAssertTrue([savedArr[1] isEqualToString:@"value2"], @"Retrieve Array value 'value2' at index 1");
     
-    XCTAssertTrue([Lockbox setArray:nil forKey:key], @"Setting Array value to nil for key 'testArr'");
-    XCTAssertNil([Lockbox arrayForKey:key], @"Confirm Array has been cleared from Lockbox");
+    XCTAssertTrue([lockbox setArray:nil forKey:key], @"Setting Array value to nil for key 'testArr'");
+    XCTAssertNil([lockbox arrayForKey:key], @"Confirm Array has been cleared from Lockbox");
 
+}
+
+- (void)testInitWithKeyPrefix
+{
+    lockbox = [[Lockbox alloc] initWithKeyPrefix:@"custom.key.prefix"];
+    
+    NSString *key = @"TestStringKey";
+    XCTAssertTrue([lockbox setString:testString forKey:key], @"Should be able to store a string");
+    XCTAssertEqualObjects([lockbox stringForKey:key], testString, @"Retrieved string should match original");
+}
+
+- (void)testInitWithNilKeyPrefix
+{
+    lockbox = [[Lockbox alloc] initWithKeyPrefix:nil];
+    
+    NSString *key = @"TestStringKey";
+    XCTAssertTrue([lockbox setString:testString forKey:key], @"Should be able to store a string");
+    XCTAssertEqualObjects([lockbox stringForKey:key], testString, @"Retrieved string should match original");
 }
 
 @end
