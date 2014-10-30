@@ -23,13 +23,13 @@
 #define LOCKBOX_ID __bridge id
 #define LOCKBOX_DICTREF __bridge CFDictionaryRef
 
-static NSString *_bundleId = nil;
+static NSString *_keyPrefix = nil;
 
 @implementation Lockbox
 
 +(void)initialize
 {
-    _bundleId = [[[NSBundle bundleForClass:[self class]] infoDictionary] objectForKey:(NSString*)kCFBundleIdentifierKey]; 
+    _keyPrefix = [[[NSBundle bundleForClass:[self class]] infoDictionary] objectForKey:(NSString*)kCFBundleIdentifierKey];
 }
 
 +(NSMutableDictionary *)_service
@@ -51,11 +51,16 @@ static NSString *_bundleId = nil;
     return query;
 }
 
-// Prefix a bare key like "MySecureKey" with the bundle id, so the actual key stored
-// is unique to this app, e.g. "com.mycompany.myapp.MySecretKey"
+// Prefix a bare key like "MySecureKey", so the actual key stored is unique to this app,
+// e.g. "com.mycompany.myapp.MySecretKey". Default prefix is the bundle id.
 +(NSString *)_hierarchicalKey:(NSString *)key
 {
-    return [_bundleId stringByAppendingFormat:@".%@", key];
+    return [_keyPrefix stringByAppendingFormat:@".%@", key];
+}
+
++(void)setKeyPrefix:(NSString *)keyPrefix
+{
+    _keyPrefix = keyPrefix;
 }
 
 +(BOOL)setObject:(NSString *)obj forKey:(NSString *)key accessibility:(CFTypeRef)accessibility

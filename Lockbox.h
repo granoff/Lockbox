@@ -9,6 +9,8 @@
 
 @interface Lockbox : NSObject
 
++(void)setKeyPrefix:(NSString *)keyPrefix;
+
 +(BOOL)setString:(NSString *)value forKey:(NSString *)key;
 +(BOOL)setString:(NSString *)value forKey:(NSString *)key accessibility:(CFTypeRef)accessibility;
 +(NSString *)stringForKey:(NSString *)key;
