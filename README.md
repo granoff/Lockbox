@@ -19,7 +19,9 @@ Surprisingly, new and experienced app developers alike often do not realize this
 
 The Lockbox class methods make it easy to store and retrieve `NSString`s, `NSArray`s, `NSSet`s, `NSDictionary`s, and `NSDate`s into and from the key chain. You are spared having to deal with the keychain APIs directly!
 
-One caveat here is that the keychain is really not meant to store large chunks of data, so don't try and store a huge array of data with these APIs simply because you want it secure. In this case, consider alternative encryption techniques.
+For greater security, and to avoid possible collisions between data stored by your app with data stored by other apps (yours or other developers), the keys you provide in the class methods for storing and retrieving data are prefixed with your app's bundle id. The class methods provide some convenience by simplifying the use of Lockbox. But if you need to be able to access a comment set of keys between your app, and say, an iOS8 extension, you may need to override the key prefix. For that, you can instantiate your own instance of Lockbox, providing your custom key prefix, and call the same methods (as instance methods) as you would call on the class. (The signatures are the same between class and instance methods. In fact, the class methods operation on a class static Lockbox instance.)
+
+The one caveat to keep in mind is that the keychain is really not meant to store large chunks of data, so don't try and store a huge array of data with these APIs simply because you want it secure. In this case, consider alternative encryption techniques.
 
 ## ARC Support
 
@@ -27,20 +29,34 @@ As of v2.0, Lockbox is ARC-only. For non-ARC support, use v1.4.9.
 
 ## Methods
 
-There are three pairs of methods, but method pairs for other container classes would not be hard to implement:
+Lockbox includes the following methods, shown here as class methods. The same methods (as instance methods) may be called on your own Lockbox instances.
+
+### NSString
 
 + `+setString:forKey:`
 + `+setString:forKey:accessibility:`
 + `+stringForKey:`
+
+### NSArray
+
 + `+setArray:forKey:`
 + `+setArray:forKey:accessibility:`
 + `+arrayForKey:`
+
+### NSSet
+
 + `+setSet:forKey:`
 + `+setSet:forKey:accessibility:`
 + `+setForKey:`
+
+### NSDictionary
+
 + `+setDictionary:forKey:`
 + `+setDictionary:forKey:accessibility:`
 + `+dictionaryForKey:`
+
+### NSDate
+
 + `+setDateForKey:`
 + `+setDateForKey:accessibility:`
 + `+dateForKey:`
@@ -49,7 +65,7 @@ All the `setXxx` methods return `BOOL`, indicating if the keychain operation suc
 
 The `setXxx` methods will overwrite values for keys that already exist in the keychain, or simply add a keychain entry for the key/value pair if it's not already there.
 
-In all the methods you can use a simple key name, like "MyKey", but know that under the hood Lockbox is prefixing that key with your apps bundle id. So the actual key used to store and retrieve the data looks more like "com.mycompany.myapp.MyKey". This ensures that your app, and only your app, has access to your data.
+In all the methods you can use a simple key name, like "MyKey", but know that under the hood Lockbox is prefixing that key with your app's bundle id (if you are using the Class methods, your own key if you are using a Lockbox instance). So the actual key used to store and retrieve the data looks more like "com.mycompany.myapp.MyKey" or "my.custom.key.MyKey". This ensures that your app, and only your app, has access to your data.
 
 The methods with an `accessibility` argument take a [Keychain Item
 Accessibility

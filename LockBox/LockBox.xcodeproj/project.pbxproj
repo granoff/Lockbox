@@ -58,7 +58,6 @@
 		4D6801EF16B478CB000CED0E /* UnitTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "UnitTests-Info.plist"; sourceTree = "<group>"; };
 		4D6801F116B478CB000CED0E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		4D6801F616B478CB000CED0E /* UnitTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UnitTests-Prefix.pch"; sourceTree = "<group>"; };
-		4D6801FB16B478F7000CED0E /* LockboxTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LockboxTests.h; sourceTree = "<group>"; };
 		4D6801FC16B478F7000CED0E /* LockboxTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LockboxTests.m; sourceTree = "<group>"; };
 		4D68020D16B489AB000CED0E /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		4D68020E16B489AB000CED0E /* Lockbox.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Lockbox.podspec; path = ../Lockbox.podspec; sourceTree = "<group>"; };
@@ -152,7 +151,6 @@
 			isa = PBXGroup;
 			children = (
 				4D6801EE16B478CB000CED0E /* Supporting Files */,
-				4D6801FB16B478F7000CED0E /* LockboxTests.h */,
 				4D6801FC16B478F7000CED0E /* LockboxTests.m */,
 			);
 			path = UnitTests;

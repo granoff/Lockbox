@@ -145,4 +145,12 @@
 
 }
 
+- (void)testLocalInstance
+{
+    NSString *customKeyPrefix = @"my.custom.keyPrefix";
+    Lockbox *lb = [[Lockbox alloc] initWithKeyPrefix:customKeyPrefix];
+    
+    XCTAssertEqualObjects(customKeyPrefix, lb.keyPrefix, @"Custom key prefix should equal '%@'", customKeyPrefix);
+}
+
 @end
