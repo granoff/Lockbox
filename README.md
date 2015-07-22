@@ -1,6 +1,9 @@
 # Lockbox
 
 [![Build Status](https://travis-ci.org/granoff/Lockbox.png)](https://travis-ci.org/granoff/Lockbox)
+[![CocoaPods](https://img.shields.io/cocoapods/p/Lockbox.svg)]()
+[![CocoaPods](https://img.shields.io/cocoapods/v/Lockbox.svg)]()
+[![CocoaPods](https://img.shields.io/cocoapods/l/Lockbox.svg)]()
 
 Lockbox is an Objective-C utility class for storing data securely in the keychain. Use it to store small, sensitive bits of data securely.
 
