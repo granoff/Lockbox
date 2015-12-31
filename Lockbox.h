@@ -5,6 +5,8 @@
 //  Copyright (c) 2012 Hawk iMedia. All rights reserved.
 //
 
+#import <Foundation/Foundation.h>
+
 @interface Lockbox : NSObject
 
 #ifdef DEBUG
