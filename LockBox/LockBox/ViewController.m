@@ -20,44 +20,33 @@
 #define kSaveAsDictionary   3
 
 @interface ViewController ()
-
+@property (nonatomic, strong) NSArray *keys;
 @end
 
 @implementation ViewController
-@synthesize inputTextField;
-@synthesize saveButton;
-@synthesize fetchButton;
-@synthesize fetchedValueLabel;
-@synthesize statusLabel;
 
-- (void)viewDidLoad
+-(void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
-}
 
-- (void)viewDidUnload
-{
-    [self setInputTextField:nil];
-    [self setSaveButton:nil];
-    [self setFetchButton:nil];
-    [self setFetchedValueLabel:nil];
-    [self setStatusLabel:nil];
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
+    self.keys = @[kMyKeyString, kMyKeyArray, kMyKeySet, kMyKeyDictionary];
 }
 
 -(IBAction)saveButtonPressed:(id)sender
 {
-    [inputTextField resignFirstResponder];
+    
+    [_inputTextField resignFirstResponder];
     
     UIButton *b = (UIButton *)sender;
-    NSString *value = inputTextField.text;
+    NSString *value = _inputTextField.text;
     BOOL result = NO;
+
+    NSString *key = _keys[b.tag];
+    id object = nil;
     
     switch (b.tag) {
         case kSaveAsString:
-            result = [Lockbox setString:value forKey:kMyKeyString];
+            object = value;
             break;
             
         case kSaveAsArray:
@@ -68,7 +57,7 @@
                               [value stringByAppendingString:@" 2"], 
                               [value stringByAppendingString:@" 3"],
                               nil];
-            result = [Lockbox setArray:array forKey:kMyKeyArray];
+            object = array;
             break;
         }
             
@@ -80,7 +69,7 @@
                           [value stringByAppendingString:@" 2"], 
                           [value stringByAppendingString:@" 3"],
                           nil];
-            result = [Lockbox setSet:set forKey:kMyKeySet];
+            object = set;
             break;
         }
             
@@ -90,58 +79,30 @@
             NSDictionary * dictionary = value ? @{@"key 1" : [value stringByAppendingString:@" 1"],
                                                   @"key 2" : [value stringByAppendingString:@" 2"],
                                                   @"key 3" : [value stringByAppendingString:@" 3"]} : nil;
-            result = [Lockbox setDictionary:dictionary forKey:kMyKeyDictionary];
+            object = dictionary;
             break;
         }
             
         default:
             break;
     }
-    
-    statusLabel.text = [NSString stringWithFormat:@"%@",
+
+    result = [Lockbox archiveObject:object forKey:key];
+
+    _statusLabel.text = [NSString stringWithFormat:@"%@",
                         (result ? @"Saved!" : @"Save failed.")];
     
 }
 
 -(IBAction)fetchButtonPressed:(id)sender
 {
-    [inputTextField resignFirstResponder];
+    [_inputTextField resignFirstResponder];
 
     UIButton *b = (UIButton *)sender;
-
-    NSString *value = @"";
+    NSString *key = _keys[b.tag];
+    id object = [Lockbox unarchiveObjectForKey:key];
     
-    switch (b.tag) {
-        case kSaveAsString:
-            value = [Lockbox stringForKey:kMyKeyString];
-            break;
-            
-        case kSaveAsArray:
-        {
-            NSArray *array = [Lockbox arrayForKey:kMyKeyArray];
-            value = [array componentsJoinedByString:@"\n"];
-            break;
-        }
-            
-        case kSaveAsSet:
-        {
-            NSSet *set = [Lockbox setForKey:kMyKeySet];
-            value = [[set allObjects] componentsJoinedByString:@"\n"];
-            break;
-        }
-            
-        case kSaveAsDictionary:
-        {
-            NSDictionary * dictionary = [Lockbox dictionaryForKey:kMyKeyDictionary];
-            value = dictionary.description;
-            break;
-        }
-            
-        default:
-            break;
-    }
-    
-    fetchedValueLabel.text = value;
+    _fetchedValueLabel.text = [object description];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
