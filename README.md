@@ -1,6 +1,9 @@
 # Lockbox
 
 [![Build Status](https://travis-ci.org/granoff/Lockbox.png)](https://travis-ci.org/granoff/Lockbox)
+[![CocoaPods](https://img.shields.io/cocoapods/p/Lockbox.svg)]()
+[![CocoaPods](https://img.shields.io/cocoapods/v/Lockbox.svg)]()
+[![CocoaPods](https://img.shields.io/cocoapods/l/Lockbox.svg)]()
 
 Lockbox is an Objective-C utility class for storing data securely in the keychain. Use it to store small, sensitive bits of data securely.
 
@@ -17,45 +20,63 @@ The thing to realize is that data stored in `NSUserDefaults` is stored in the cl
 
 Surprisingly, new and experienced app developers alike often do not realize this, until it's too late.
 
-The Lockbox class methods make it easy to store and retrieve `NSString`s, `NSArray`s, `NSSet`s, `NSDictionary`s, and `NSDate`s into and from the key chain. You are spared having to deal with the keychain APIs directly!
+The Lockbox class methods make it easy to store and retrieve ~`NSString`s, `NSArray`s, `NSSet`s, `NSDictionary`s, and `NSDate`s~ any Foundation-based object that conforms to `NSSecureCoding` into and from the key chain. You are spared having to deal with the keychain APIs directly!
 
-For greater security, and to avoid possible collisions between data stored by your app with data stored by other apps (yours or other developers), the keys you provide in the class methods for storing and retrieving data are prefixed with your app's bundle id. The class methods provide some convenience by simplifying the use of Lockbox. But if you need to be able to access a comment set of keys between your app, and say, an iOS8 extension, you may need to override the key prefix. For that, you can instantiate your own instance of Lockbox, providing your custom key prefix, and call the same methods (as instance methods) as you would call on the class. (The signatures are the same between class and instance methods. In fact, the class methods operation on a class static Lockbox instance.)
+For greater security, and to avoid possible collisions between data stored by your app with data stored by other apps (yours or other developers), the keys you provide in the class methods for storing and retrieving data are prefixed with your app's bundle id. The class methods provide some convenience by simplifying the use of Lockbox. But if you need to be able to access a common set of keys between your app, and say, an iOS8 extension, you may need to override the key prefix. For that, you can instantiate your own instance of Lockbox, providing your custom key prefix, and call the same methods (as instance methods) as you would call on the class. (The signatures are the same between class and instance methods. In fact, the class methods operate on a class-static Lockbox instance.)
 
 The one caveat to keep in mind is that the keychain is really not meant to store large chunks of data, so don't try and store a huge array of data with these APIs simply because you want it secure. In this case, consider alternative encryption techniques.
 
-## ARC Support
-
-As of v2.0, Lockbox is ARC-only. For non-ARC support, use v1.4.9.
-
 ## Methods
 
-Lockbox includes the following methods, shown here as class methods. The same methods (as instance methods) may be called on your own Lockbox instances.
+Lockbox 3 includes the following methods, shown here as class methods. The same methods (as instance methods) may be called on your own Lockbox instances.
 
-### NSString
+## General object storage and retrieval
+
++ `+archiveObject:forKey:`
++ `+archiveObject:forKey:accessibility:`
++ `+unarchiveObject:forKey:`
+
+These methods use an `NSKeyedArchiver` and `NSKeyedUnarchiver`, respectively, to encode and decode your objects. Your objects must conform toe `NSSecureCoding`.
+
+The `+archiveObject:forKey:...` methods return `BOOL` indicating if the keychain operation succeeded or failed. The method `+unarchiveObjectForKey:` method returns a non-`nil` value on success or `nil` on failure. The returned value is of type `id`, but you assign this to whatever you know the data type should be. For example:
+
+```
+NSDate *today = [NSDate date];
+[Lockbox archiveObject:today forKey:@"theDate"];
+...
+
+NSDate *theDate = [Lockbox unarchiveObjectForKey:@"theDate"];
+```
+
+See below for notes on the `accessibility` argument.
+
+Lockbox 2.x and older include the following deprecated methods, shown here as class methods. The same methods (as instance methods) may be called on your own Lockbox instances.
+
+### NSString (deprecated)
 
 + `+setString:forKey:`
 + `+setString:forKey:accessibility:`
 + `+stringForKey:`
 
-### NSArray
+### NSArray (deprecated)
 
 + `+setArray:forKey:`
 + `+setArray:forKey:accessibility:`
 + `+arrayForKey:`
 
-### NSSet
+### NSSet (deprecated)
 
 + `+setSet:forKey:`
 + `+setSet:forKey:accessibility:`
 + `+setForKey:`
 
-### NSDictionary
+### NSDictionary (deprecated)
 
 + `+setDictionary:forKey:`
 + `+setDictionary:forKey:accessibility:`
 + `+dictionaryForKey:`
 
-### NSDate
+### NSDate (deprecated)
 
 + `+setDateForKey:`
 + `+setDateForKey:accessibility:`
@@ -75,6 +96,11 @@ example, passing `kSecAttrAccessibleWhenUnlockedThisDeviceOnly` will make
 it accessible only while the device is unlocked, and will not migrate this
 item to a new device or installation. The methods without a specific
 `accessibility` argument will use `kSecAttrAccessibleWhenUnlocked`, the default in recent iOS versions.
+
+## ARC Support
+
+As of v2.0, Lockbox is ARC-only. For non-ARC support, use v1.4.9.
+
 
 ## Requirements & Limitations
 

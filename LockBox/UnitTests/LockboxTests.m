@@ -38,6 +38,7 @@
     
 }
 
+
 -(void)testSetStringForKey
 {
     NSString *key = @"TestStringKey";
@@ -82,6 +83,11 @@
     XCTAssertTrue([Lockbox setDictionary:testDictionary forKey:key], @"Should be able to store a dictionary");
     NSDictionary *dictionary = [Lockbox dictionaryForKey:key];
     XCTAssertEqualObjects(dictionary, testDictionary, @"Retrieved dictionary should match original");
+    
+    NSString *expectedValueForKey = [testDictionary objectForKey:@"Key 1"];
+    NSString *actualValueForKey = [dictionary objectForKey:@"Key 1"];
+    
+    XCTAssertEqualObjects(expectedValueForKey, actualValueForKey, @"Actual objectForKey value doesn't match expected value");
     
     [NSThread sleepForTimeInterval:1.0];
 }
@@ -152,5 +158,19 @@
     
     XCTAssertEqualObjects(customKeyPrefix, lb.keyPrefix, @"Custom key prefix should equal '%@'", customKeyPrefix);
 }
+
+//-(void)testArrayOfDictionary
+//{
+//    NSArray *array = @[ testDictionary ];
+//    [Lockbox setArray:array forKey:@"testArrayOfDictionary"];
+//    
+//    NSArray *fetchedArray = [Lockbox arrayForKey:@"testArrayOfDictionary"];
+//    
+////    XCTAssertEqualObjects(array, fetchedArray, @"Fetched array of dictionary should match original");
+//    
+//    NSDictionary *fetchedDictionary = fetchedArray.firstObject;
+//    
+//    XCTAssertEqualObjects(fetchedDictionary, testDictionary, @"Fetched dictionary from array should equal testDictionary");
+//}
 
 @end

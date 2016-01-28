@@ -88,16 +88,14 @@ static NSString *_defaultKeyPrefix = nil;
 
 -(BOOL)setObject:(NSString *)obj forKey:(NSString *)key accessibility:(CFTypeRef)accessibility
 {
-    OSStatus status;
-    
     NSString *hierKey = [self _hierarchicalKey:key];
 
     // If the object is nil, delete the item
     if (!obj) {
         NSMutableDictionary *query = [self _query];
         [query setObject:hierKey forKey:(LOCKBOX_ID)kSecAttrService];
-        status = SecItemDelete((LOCKBOX_DICTREF)query);
-        return (status == errSecSuccess);
+        _lastStatus = SecItemDelete((LOCKBOX_DICTREF)query);
+        return (_lastStatus == errSecSuccess);
     }
     
     NSMutableDictionary *dict = [self _service];
@@ -105,18 +103,18 @@ static NSString *_defaultKeyPrefix = nil;
     [dict setObject: (LOCKBOX_ID)(accessibility) forKey: (LOCKBOX_ID) kSecAttrAccessible];
     [dict setObject: [obj dataUsingEncoding:NSUTF8StringEncoding] forKey: (LOCKBOX_ID) kSecValueData];
     
-    status = SecItemAdd ((LOCKBOX_DICTREF) dict, NULL);
-    if (status == errSecDuplicateItem) {
+    _lastStatus = SecItemAdd ((LOCKBOX_DICTREF) dict, NULL);
+    if (_lastStatus == errSecDuplicateItem) {
         NSMutableDictionary *query = [self _query];
         [query setObject:hierKey forKey:(LOCKBOX_ID)kSecAttrService];
-        status = SecItemDelete((LOCKBOX_DICTREF)query);
-        if (status == errSecSuccess)
-            status = SecItemAdd((LOCKBOX_DICTREF) dict, NULL);
+        _lastStatus = SecItemDelete((LOCKBOX_DICTREF)query);
+        if (_lastStatus == errSecSuccess)
+            _lastStatus = SecItemAdd((LOCKBOX_DICTREF) dict, NULL);
     }
-    if (status != errSecSuccess)
-        DLog(@"SecItemAdd failed for key %@: %d", hierKey, (int)status);
+    if (_lastStatus != errSecSuccess)
+        DLog(@"SecItemAdd failed for key %@: %d", hierKey, (int)_lastStatus);
     
-    return (status == errSecSuccess);
+    return (_lastStatus == errSecSuccess);
 }
 
 -(NSString *)objectForKey:(NSString *)key
@@ -127,10 +125,10 @@ static NSString *_defaultKeyPrefix = nil;
     [query setObject:hierKey forKey: (LOCKBOX_ID)kSecAttrService];
 
     CFDataRef data = nil;
-    OSStatus status =
+    _lastStatus =
     SecItemCopyMatching ( (LOCKBOX_DICTREF) query, (CFTypeRef *) &data );
-    if (status != errSecSuccess && status != errSecItemNotFound)
-        DLog(@"SecItemCopyMatching failed for key %@: %d", hierKey, (int)status);
+    if (_lastStatus != errSecSuccess && _lastStatus != errSecItemNotFound)
+        DLog(@"SecItemCopyMatching failed for key %@: %d", hierKey, (int)_lastStatus);
     
     if (!data)
         return nil;
@@ -139,6 +137,84 @@ static NSString *_defaultKeyPrefix = nil;
     
     return s;
 }
+
+-(BOOL)setData:(NSData *)obj forKey:(NSString *)key accessibility:(CFTypeRef)accessibility
+{
+    NSString *hierKey = [self _hierarchicalKey:key];
+    
+    // If the object is nil, delete the item
+    if (!obj) {
+        NSMutableDictionary *query = [self _query];
+        [query setObject:hierKey forKey:(LOCKBOX_ID)kSecAttrService];
+        _lastStatus = SecItemDelete((LOCKBOX_DICTREF)query);
+        return (_lastStatus == errSecSuccess);
+    }
+    
+    NSMutableDictionary *dict = [self _service];
+    [dict setObject: hierKey forKey: (LOCKBOX_ID) kSecAttrService];
+    [dict setObject: (LOCKBOX_ID)(accessibility) forKey: (LOCKBOX_ID) kSecAttrAccessible];
+    [dict setObject: obj forKey: (LOCKBOX_ID) kSecValueData];
+    
+    _lastStatus = SecItemAdd ((LOCKBOX_DICTREF) dict, NULL);
+    if (_lastStatus == errSecDuplicateItem) {
+        NSMutableDictionary *query = [self _query];
+        [query setObject:hierKey forKey:(LOCKBOX_ID)kSecAttrService];
+        _lastStatus = SecItemDelete((LOCKBOX_DICTREF)query);
+        if (_lastStatus == errSecSuccess)
+            _lastStatus = SecItemAdd((LOCKBOX_DICTREF) dict, NULL);
+    }
+    if (_lastStatus != errSecSuccess)
+        DLog(@"SecItemAdd failed for key %@: %d", hierKey, (int)_lastStatus);
+    
+    return (_lastStatus == errSecSuccess);
+}
+
+-(NSData *)dataForKey:(NSString *)key
+{
+    NSString *hierKey = [self _hierarchicalKey:key];
+    
+    NSMutableDictionary *query = [self _query];
+    [query setObject:hierKey forKey: (LOCKBOX_ID)kSecAttrService];
+    
+    CFDataRef data = nil;
+    _lastStatus =
+    SecItemCopyMatching ( (LOCKBOX_DICTREF) query, (CFTypeRef *) &data );
+    if (_lastStatus != errSecSuccess && _lastStatus != errSecItemNotFound)
+        DLog(@"SecItemCopyMatching failed for key %@: %d", hierKey, (int)_lastStatus);
+    
+    if (!data)
+        return nil;
+
+    return (__bridge_transfer NSData *)data;
+}
+
+-(BOOL)archiveObject:(id<NSSecureCoding>)object forKey:(NSString *)key
+{
+    return [self archiveObject:object forKey:key accessibility:DEFAULT_ACCESSIBILITY];
+}
+
+-(BOOL)archiveObject:(id<NSSecureCoding>)object forKey:(NSString *)key accessibility:(CFTypeRef)accessibility
+{
+    NSMutableData *data = [NSMutableData new];
+    NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
+    [archiver encodeObject:object forKey:key];
+    [archiver finishEncoding];
+    
+    return [self setData:data forKey:key accessibility:accessibility];
+}
+
+-(id)unarchiveObjectForKey:(NSString *)key
+{
+    NSData *data = [self dataForKey:key];
+    if (!data)
+        return nil;
+    
+    NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
+    id object = [unarchiver decodeObjectForKey:key];
+    
+    return object;
+}
+
 
 -(BOOL)setString:(NSString *)value forKey:(NSString *)key
 {
@@ -254,6 +330,21 @@ static NSString *_defaultKeyPrefix = nil;
 }
 
 #pragma mark - Class methods
+
++(BOOL)archiveObject:(id<NSSecureCoding>)object forKey:(NSString *)key
+{
+    return [_lockBox archiveObject:object forKey:key];
+}
+
++(BOOL)archiveObject:(id<NSSecureCoding>)object forKey:(NSString *)key accessibility:(CFTypeRef)accessibility
+{
+    return [_lockBox archiveObject:object forKey:key accessibility:accessibility];
+}
+
++(id)unarchiveObjectForKey:(NSString *)key
+{
+    return [_lockBox unarchiveObjectForKey:key];
+}
 
 +(BOOL)setString:(NSString *)value forKey:(NSString *)key
 {

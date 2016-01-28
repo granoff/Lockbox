@@ -6,6 +6,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
 @interface Lockbox : NSObject
 
@@ -14,56 +15,68 @@
 @property (strong, nonatomic, readonly) NSString *keyPrefix;
 #endif
 
+@property (assign, nonatomic, readonly) OSStatus lastStatus;
+
 // When the default key prefix (your app's bundle id) is not sufficient, instantiate your own
 // instance of Lockbox specifying your own key prefix, and use the appropriate instance methods
-// to store and retreive keychain data. You can also instantiate your own instance and use the
+// to store and retrieve keychain data. You can also instantiate your own instance and use the
 // default key prefix simply by calling [[Lockbox alloc] init];
 -(instancetype)initWithKeyPrefix:(NSString *)keyPrefix;
 
 // When adding instance methods, remember to add a corresponding class method.
 
--(BOOL)setString:(NSString *)value forKey:(NSString *)key;
--(BOOL)setString:(NSString *)value forKey:(NSString *)key accessibility:(CFTypeRef)accessibility;
--(NSString *)stringForKey:(NSString *)key;
+-(BOOL)archiveObject:(id<NSSecureCoding>)object forKey:(NSString *)key;
+-(BOOL)archiveObject:(id<NSSecureCoding>)object forKey:(NSString *)key accessibility:(CFTypeRef)accessibility;
 
--(BOOL)setArray:(NSArray *)value forKey:(NSString *)key;
--(BOOL)setArray:(NSArray *)value forKey:(NSString *)key accessibility:(CFTypeRef)accessibility;
--(NSArray *)arrayForKey:(NSString *)key;
+-(id)unarchiveObjectForKey:(NSString *)key;
 
--(BOOL)setSet:(NSSet *)value forKey:(NSString *)key;
--(BOOL)setSet:(NSSet *)value forKey:(NSString *)key accessibility:(CFTypeRef)accessibility;
--(NSSet *)setForKey:(NSString *)key;
+-(BOOL)setString:(NSString *)value forKey:(NSString *)key DEPRECATED_MSG_ATTRIBUTE("Migrate to -archiveObject:forKey:");
+-(BOOL)setString:(NSString *)value forKey:(NSString *)key accessibility:(CFTypeRef)accessibility DEPRECATED_MSG_ATTRIBUTE("Migrate to -archiveObject:forKey:accesibility");
+-(NSString *)stringForKey:(NSString *)key DEPRECATED_MSG_ATTRIBUTE("Migrate to -unarchiveObject:forKey:");
 
--(BOOL)setDictionary:(NSDictionary *)value forKey:(NSString *)key;
--(BOOL)setDictionary:(NSDictionary *)value forKey:(NSString *)key accessibility:(CFTypeRef)accessibility;
--(NSDictionary *)dictionaryForKey:(NSString *)key;
+-(BOOL)setArray:(NSArray *)value forKey:(NSString *)key DEPRECATED_MSG_ATTRIBUTE("Migrate to -archiveObject:forKey:");
+-(BOOL)setArray:(NSArray *)value forKey:(NSString *)key accessibility:(CFTypeRef)accessibility DEPRECATED_MSG_ATTRIBUTE("Migrate to archiveObject:forKey:accesibility");
+-(NSArray *)arrayForKey:(NSString *)key DEPRECATED_MSG_ATTRIBUTE("Migrate to -unarchiveObject:forKey:");
 
--(BOOL)setDate:(NSDate *)value forKey:(NSString *)key;
--(BOOL)setDate:(NSDate *)value forKey:(NSString *)key accessibility:(CFTypeRef)accessibility;
--(NSDate *)dateForKey:(NSString *)key;
+-(BOOL)setSet:(NSSet *)value forKey:(NSString *)key DEPRECATED_MSG_ATTRIBUTE("Migrate to -archiveObject:forKey:");
+-(BOOL)setSet:(NSSet *)value forKey:(NSString *)key accessibility:(CFTypeRef)accessibility DEPRECATED_MSG_ATTRIBUTE("Migrate to -archiveObject:forKey:accesibility");
+-(NSSet *)setForKey:(NSString *)key DEPRECATED_MSG_ATTRIBUTE("Migrate to -unarchiveObject:forKey:");
+
+-(BOOL)setDictionary:(NSDictionary *)value forKey:(NSString *)key DEPRECATED_MSG_ATTRIBUTE("Migrate to -archiveObject:forKey:");
+-(BOOL)setDictionary:(NSDictionary *)value forKey:(NSString *)key accessibility:(CFTypeRef)accessibility DEPRECATED_MSG_ATTRIBUTE("Migrate to -archiveObject:forKey:accesibility");
+-(NSDictionary *)dictionaryForKey:(NSString *)key DEPRECATED_MSG_ATTRIBUTE("Migrate to -unarchiveObject:forKey:");
+
+-(BOOL)setDate:(NSDate *)value forKey:(NSString *)key DEPRECATED_MSG_ATTRIBUTE("Migrate to -archiveObject:forKey:");
+-(BOOL)setDate:(NSDate *)value forKey:(NSString *)key accessibility:(CFTypeRef)accessibility DEPRECATED_MSG_ATTRIBUTE("Migrate to -archiveObject:forKey:accesibility");
+-(NSDate *)dateForKey:(NSString *)key DEPRECATED_MSG_ATTRIBUTE("Migrate to -unarchiveObject:forKey:");
 
 // Class methods that maintain the convenience of storing and retrieving data from the keychain
 // using class-level methods. An internal instance of Lockbox is instantiated for the class that
 // uses the instance methods above, and a key prefix equal to your app's bundle id.
 
-+(BOOL)setString:(NSString *)value forKey:(NSString *)key;
-+(BOOL)setString:(NSString *)value forKey:(NSString *)key accessibility:(CFTypeRef)accessibility;
-+(NSString *)stringForKey:(NSString *)key;
++(BOOL)archiveObject:(id<NSSecureCoding>)object forKey:(NSString *)key;
++(BOOL)archiveObject:(id<NSSecureCoding>)object forKey:(NSString *)key accessibility:(CFTypeRef)accessibility;
 
-+(BOOL)setArray:(NSArray *)value forKey:(NSString *)key;
-+(BOOL)setArray:(NSArray *)value forKey:(NSString *)key accessibility:(CFTypeRef)accessibility;
-+(NSArray *)arrayForKey:(NSString *)key;
++(id)unarchiveObjectForKey:(NSString *)key;
 
-+(BOOL)setSet:(NSSet *)value forKey:(NSString *)key;
-+(BOOL)setSet:(NSSet *)value forKey:(NSString *)key accessibility:(CFTypeRef)accessibility;
-+(NSSet *)setForKey:(NSString *)key;
++(BOOL)setString:(NSString *)value forKey:(NSString *)key DEPRECATED_MSG_ATTRIBUTE("Migrate to +archiveObject:forKey:");
++(BOOL)setString:(NSString *)value forKey:(NSString *)key accessibility:(CFTypeRef)accessibility DEPRECATED_MSG_ATTRIBUTE("Migrate to +archiveObject:forKey:accesibility");
++(NSString *)stringForKey:(NSString *)key DEPRECATED_MSG_ATTRIBUTE("Migrate to +unarchiveObject:forKey:");
 
-+(BOOL)setDictionary:(NSDictionary *)value forKey:(NSString *)key;
-+(BOOL)setDictionary:(NSDictionary *)value forKey:(NSString *)key accessibility:(CFTypeRef)accessibility;
-+(NSDictionary *)dictionaryForKey:(NSString *)key;
++(BOOL)setArray:(NSArray *)value forKey:(NSString *)key DEPRECATED_MSG_ATTRIBUTE("Migrate to +archiveObject:forKey:");
++(BOOL)setArray:(NSArray *)value forKey:(NSString *)key accessibility:(CFTypeRef)accessibility DEPRECATED_MSG_ATTRIBUTE("Migrate to +archiveObject:forKey:accesibility");
++(NSArray *)arrayForKey:(NSString *)key DEPRECATED_MSG_ATTRIBUTE("Migrate to +unarchiveObject:forKey:");
 
-+(BOOL)setDate:(NSDate *)value forKey:(NSString *)key;
-+(BOOL)setDate:(NSDate *)value forKey:(NSString *)key accessibility:(CFTypeRef)accessibility;
-+(NSDate *)dateForKey:(NSString *)key;
++(BOOL)setSet:(NSSet *)value forKey:(NSString *)key DEPRECATED_MSG_ATTRIBUTE("Migrate to +archiveObject:forKey:");
++(BOOL)setSet:(NSSet *)value forKey:(NSString *)key accessibility:(CFTypeRef)accessibility DEPRECATED_MSG_ATTRIBUTE("Migrate to +archiveObject:forKey:accesibility");
++(NSSet *)setForKey:(NSString *)key DEPRECATED_MSG_ATTRIBUTE("Migrate to +unarchiveObject:forKey:");
+
++(BOOL)setDictionary:(NSDictionary *)value forKey:(NSString *)key DEPRECATED_MSG_ATTRIBUTE("Migrate to +archiveObject:forKey:");
++(BOOL)setDictionary:(NSDictionary *)value forKey:(NSString *)key accessibility:(CFTypeRef)accessibility DEPRECATED_MSG_ATTRIBUTE("Migrate to +archiveObject:forKey:accesibility");
++(NSDictionary *)dictionaryForKey:(NSString *)key DEPRECATED_MSG_ATTRIBUTE("Migrate to +unarchiveObject:forKey:");
+
++(BOOL)setDate:(NSDate *)value forKey:(NSString *)key DEPRECATED_MSG_ATTRIBUTE("Migrate to +archiveObject:forKey:");
++(BOOL)setDate:(NSDate *)value forKey:(NSString *)key accessibility:(CFTypeRef)accessibility DEPRECATED_MSG_ATTRIBUTE("Migrate to +archiveObject:forKey:accesibility");
++(NSDate *)dateForKey:(NSString *)key DEPRECATED_MSG_ATTRIBUTE("Migrate to +unarchiveObject:forKey:");
 
 @end

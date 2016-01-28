@@ -18,3 +18,5 @@ xcuserdata
 profile
 *.moved-aside
 DerivedData
+*/xcshareddata/*
+*.xccheckout

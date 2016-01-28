@@ -24,6 +24,7 @@
 		4D68021016B489AB000CED0E /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 4D68020D16B489AB000CED0E /* LICENSE */; };
 		4D68021116B489AB000CED0E /* Lockbox.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 4D68020E16B489AB000CED0E /* Lockbox.podspec */; };
 		4D68021216B489AB000CED0E /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 4D68020F16B489AB000CED0E /* README.md */; };
+		4D917A0A1C593EC800323832 /* Lockbox3Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D917A091C593EC800323832 /* Lockbox3Tests.m */; };
 		4DE9819617FF3C3000E7D452 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4DE9819517FF3C3000E7D452 /* Default-568h@2x.png */; };
 /* End PBXBuildFile section */
 
@@ -62,6 +63,7 @@
 		4D68020D16B489AB000CED0E /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		4D68020E16B489AB000CED0E /* Lockbox.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Lockbox.podspec; path = ../Lockbox.podspec; sourceTree = "<group>"; };
 		4D68020F16B489AB000CED0E /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		4D917A091C593EC800323832 /* Lockbox3Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Lockbox3Tests.m; sourceTree = "<group>"; };
 		4DE9819517FF3C3000E7D452 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -152,6 +154,7 @@
 			children = (
 				4D6801EE16B478CB000CED0E /* Supporting Files */,
 				4D6801FC16B478F7000CED0E /* LockboxTests.m */,
+				4D917A091C593EC800323832 /* Lockbox3Tests.m */,
 			);
 			path = UnitTests;
 			sourceTree = "<group>";
@@ -203,7 +206,6 @@
 				4D6801E316B478CB000CED0E /* Sources */,
 				4D6801E416B478CB000CED0E /* Frameworks */,
 				4D6801E516B478CB000CED0E /* Resources */,
-				4D6801E616B478CB000CED0E /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -222,7 +224,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastTestingUpgradeCheck = 0600;
-				LastUpgradeCheck = 0600;
+				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = "Hawk iMedia";
 			};
 			buildConfigurationList = 2D0B9E591540556D00E5BE71 /* Build configuration list for PBXProject "LockBox" */;
@@ -267,22 +269,6 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		4D6801E616B478CB000CED0E /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		2D0B9E5B1540556E00E5BE71 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -300,6 +286,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4D6801FD16B478F7000CED0E /* LockboxTests.m in Sources */,
+				4D917A0A1C593EC800323832 /* Lockbox3Tests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -355,9 +342,12 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -391,8 +381,10 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
+				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -416,6 +408,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "LockBox/LockBox-Prefix.pch";
 				INFOPLIST_FILE = "LockBox/LockBox-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.hawkimedia.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -430,6 +423,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "LockBox/LockBox-Prefix.pch";
 				INFOPLIST_FILE = "LockBox/LockBox-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.hawkimedia.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -444,24 +438,21 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
-					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
-					"$(inherited)",
-				);
+				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
 				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "UnitTests/UnitTests-Prefix.pch";
 				INFOPLIST_FILE = "UnitTests/UnitTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				LIBRARY_SEARCH_PATHS = "$(PLATFORM_DEVELOPER_USR_DIR)/**";
+				LIBRARY_SEARCH_PATHS = "";
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"-Objc",
 					"-framework",
 					XCTest,
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.hawkimedia.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 			};
@@ -476,23 +467,20 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
-					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
-					"$(inherited)",
-				);
+				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
 				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "UnitTests/UnitTests-Prefix.pch";
 				INFOPLIST_FILE = "UnitTests/UnitTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				LIBRARY_SEARCH_PATHS = "$(PLATFORM_DEVELOPER_USR_DIR)/**";
+				LIBRARY_SEARCH_PATHS = "";
 				OTHER_LDFLAGS = (
 					"-Objc",
 					"-framework",
 					XCTest,
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.hawkimedia.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 			};
