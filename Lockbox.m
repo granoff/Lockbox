@@ -208,9 +208,15 @@ static NSString *_defaultKeyPrefix = nil;
     NSData *data = [self dataForKey:key];
     if (!data)
         return nil;
-    
-    NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
-    id object = [unarchiver decodeObjectForKey:key];
+
+    id object = nil;
+    @try {
+        NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
+        object = [unarchiver decodeObjectForKey:key];
+    }
+    @catch (NSException *exception) {
+        DLog(@"failed for key %@: %@", key, exception.description);
+    }
     
     return object;
 }

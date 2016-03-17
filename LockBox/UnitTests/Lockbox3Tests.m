@@ -171,4 +171,13 @@
     XCTAssertEqualObjects(fetchedDictionary, _testDictionary, @"Fetched dictionary from array should equal _testDictionary");
 }
 
+-(void)testInvalidArchiveData
+{
+    [Lockbox setString:@"testing" forKey:@"testInvalidArchive"];
+    
+    id data = [Lockbox unarchiveObjectForKey:@"testInvalidArchive"];
+    
+    XCTAssertNil(data, @"Expected nil for an invalid archive");
+}
+
 @end
