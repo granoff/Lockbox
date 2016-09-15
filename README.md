@@ -113,6 +113,8 @@ As of v2.0, Lockbox is ARC-only. For non-ARC support, use v1.4.9.
 
 To use this class you will need to add the `Security` framework to your project.
 
+Your project will have to have Keychain Sharing enabled for Lockbox to access the keychain, but you can remove any Keychain Groups that Xcode adds. The entititlement is apparently required for any keychain access, not just sharing.
+
 This class was written for use under Cocoa Touch and iOS. The code and tests run fine in the iOS simulator under Mac OS. But there are some issues using this class under Cocoa and Mac OS. There are some keychain API differences between the 2 platforms, as it happens. Feel free to fork this repo to make it work for both Cocoa and Cocoa Touch and I'll be happy to consider your pull request!
 
 ### Note on running unittests on device
