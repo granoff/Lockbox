@@ -7,6 +7,8 @@
 
 Lockbox is an Objective-C utility class for storing data securely in the keychain. Use it to store small, sensitive bits of data securely.
 
+Looking for a Swift version? Check out [Strongbox](https://github.com/granoff/Strongbox).
+
 ## Overview
 
 There are some bits of data that an app sometimes needs to store that are sensitive:
