@@ -92,6 +92,16 @@
     [NSThread sleepForTimeInterval:1.0];
 }
 
+-(void)testSetDictionaryForKey
+{
+    NSString *key = @"TestDictionaryKey";
+    STAssertTrue([Lockbox setDictionary:testDictionary forKey:key], @"Should be able to store a dictionary");
+    NSDictionary *dictionary = [Lockbox dictionaryForKey:key];
+    STAssertEqualObjects(dictionary, testDictionary, @"Retrieved dictionary should match original");
+    
+    [NSThread sleepForTimeInterval:1.0];
+}
+
 -(void)testSetSameKeyWithTwoValues
 {
     XCTAssertTrue([Lockbox setString:@"1" forKey:@"test"], @"Set '1' for key 'test'");
