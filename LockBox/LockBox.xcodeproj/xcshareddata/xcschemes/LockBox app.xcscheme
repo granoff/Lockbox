@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0800"
+   LastUpgradeVersion = "1120"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "FAD106401D961E8900F81263"
-               BuildableName = "Lockbox.framework"
-               BlueprintName = "Lockbox"
+               BlueprintIdentifier = "2D0B9E5E1540556E00E5BE71"
+               BuildableName = "LockBox.app"
+               BlueprintName = "LockBox"
                ReferencedContainer = "container:LockBox.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -40,15 +40,16 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <MacroExpansion>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "FAD106401D961E8900F81263"
-            BuildableName = "Lockbox.framework"
-            BlueprintName = "Lockbox"
+            BlueprintIdentifier = "2D0B9E5E1540556E00E5BE71"
+            BuildableName = "LockBox.app"
+            BlueprintName = "LockBox"
             ReferencedContainer = "container:LockBox.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -56,15 +57,16 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <MacroExpansion>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "FAD106401D961E8900F81263"
-            BuildableName = "Lockbox.framework"
-            BlueprintName = "Lockbox"
+            BlueprintIdentifier = "2D0B9E5E1540556E00E5BE71"
+            BuildableName = "LockBox.app"
+            BlueprintName = "LockBox"
             ReferencedContainer = "container:LockBox.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

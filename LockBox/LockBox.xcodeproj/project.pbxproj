@@ -24,6 +24,7 @@
 		4D68021016B489AB000CED0E /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 4D68020D16B489AB000CED0E /* LICENSE */; };
 		4D68021116B489AB000CED0E /* Lockbox.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 4D68020E16B489AB000CED0E /* Lockbox.podspec */; };
 		4D68021216B489AB000CED0E /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 4D68020F16B489AB000CED0E /* README.md */; };
+		4D88390B2389965300CC55E8 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D88390A2389965300CC55E8 /* Security.framework */; };
 		4D917A0A1C593EC800323832 /* Lockbox3Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D917A091C593EC800323832 /* Lockbox3Tests.m */; };
 		4DE9819617FF3C3000E7D452 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4DE9819517FF3C3000E7D452 /* Default-568h@2x.png */; };
 		FAD106491D961E9700F81263 /* Lockbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D0B9E811540558B00E5BE71 /* Lockbox.m */; };
@@ -65,6 +66,7 @@
 		4D68020D16B489AB000CED0E /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		4D68020E16B489AB000CED0E /* Lockbox.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Lockbox.podspec; path = ../Lockbox.podspec; sourceTree = "<group>"; };
 		4D68020F16B489AB000CED0E /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		4D88390A2389965300CC55E8 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
 		4D917A091C593EC800323832 /* Lockbox3Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Lockbox3Tests.m; sourceTree = "<group>"; };
 		4DA5A23C1D897F9D0072168E /* LockBox.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LockBox.entitlements; sourceTree = "<group>"; };
 		4DE9819517FF3C3000E7D452 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
@@ -89,6 +91,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4D88390B2389965300CC55E8 /* Security.framework in Frameworks */,
 				4D6801EB16B478CB000CED0E /* UIKit.framework in Frameworks */,
 				4D6801EC16B478CB000CED0E /* Foundation.framework in Frameworks */,
 			);
@@ -131,6 +134,7 @@
 			isa = PBXGroup;
 			children = (
 				2D0B9E831540565000E5BE71 /* Security.framework */,
+				4D88390A2389965300CC55E8 /* Security.framework */,
 				2D0B9E631540556E00E5BE71 /* UIKit.framework */,
 				2D0B9E651540556E00E5BE71 /* Foundation.framework */,
 				2D0B9E671540556E00E5BE71 /* CoreGraphics.framework */,
@@ -300,6 +304,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 			);
 			mainGroup = 2D0B9E541540556D00E5BE71;

@@ -8,6 +8,7 @@
 
 #import <XCTest/XCTest.h>
 #import "Lockbox.h"
+#import <Security/Security.h>
 
 @interface Lockbox3Tests : XCTestCase
 @property (nonatomic, strong) NSString *testString;
@@ -178,6 +179,17 @@
     id data = [Lockbox unarchiveObjectForKey:@"testInvalidArchive"];
     
     XCTAssertNil(data, @"Expected nil for an invalid archive");
+}
+
+-(void)testUserCase
+{
+    if (![[NSUserDefaults standardUserDefaults] stringForKey:@"Initialized"]) {
+        [Lockbox setString:nil forKey:@"auth_token" accessibility:kSecAttrAccessibleAlways];
+        [[NSUserDefaults standardUserDefaults] setValue:@"YES" forKey:@"Initialized"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
+    NSString *authToken = [Lockbox stringForKey:@"auth_token"];
+    XCTAssertNil(authToken, @"authToken not nil");
 }
 
 @end
