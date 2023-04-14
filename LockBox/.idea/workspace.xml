@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="52c19063-fd70-4c2a-8d5e-d7a0dd1ae44b" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="macos_iosmac_x86_64" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="1aLnNNy3lITptFYSBYd52TLhpJq" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="autoscrollToSource" value="true" />
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="manualOrder" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors" />
+  </component>
+  <component name="RunManager" selected="Application.LockBox">
+    <list>
+      <item itemvalue="Application.LockBox" />
+      <item itemvalue="Application.LockBox app" />
+      <item itemvalue="XCTest.UnitTests" />
+    </list>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="52c19063-fd70-4c2a-8d5e-d7a0dd1ae44b" name="Default Changelist" comment="" />
+      <created>1586523700419</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1586523700419</updated>
+      <workItem from="1586523706123" duration="215000" />
+      <workItem from="1617928341185" duration="2000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="469" y="269" key="SettingsEditor" timestamp="1586523884468">
+      <screen x="0" y="23" width="2560" height="1347" />
+    </state>
+    <state x="469" y="269" key="SettingsEditor/0.23.2560.1347@0.23.2560.1347" timestamp="1586523884468" />
+    <state x="949" y="530" key="com.intellij.ide.util.TipDialog" timestamp="1586523752636">
+      <screen x="0" y="23" width="2560" height="1347" />
+    </state>
+    <state x="949" y="530" key="com.intellij.ide.util.TipDialog/0.23.2560.1347@0.23.2560.1347" timestamp="1586523752636" />
+  </component>
+</project>
